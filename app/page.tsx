@@ -74,6 +74,7 @@ export default function Home() {
     const updateScroll = () => {
       const max = root.scrollHeight - window.innerHeight;
       root.style.setProperty("--scroll-progress", `${max > 0 ? (window.scrollY / max) * 100 : 0}%`);
+      root.classList.toggle("has-scrolled", window.scrollY > 90);
       if (!reduced && window.innerWidth > 800) {
         root.style.setProperty("--hero-parallax", `${Math.min(window.scrollY * 0.12, 72)}px`);
       }
@@ -90,6 +91,7 @@ export default function Home() {
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
+      root.classList.remove("has-scrolled");
     };
   }, []);
 
@@ -111,6 +113,7 @@ export default function Home() {
           </div>
           <LeadForm />
         </div>
+        <a className="scroll-cue" href="#situations"><span>SCROLL</span><i><b /></i><small>아래로 내려 더 보기</small></a>
       </section>
 
       <section className="quick-strip"><strong>지금 필요한 작업, 한 번에 문의하세요</strong><div>{["에어컨 수리", "신규 설치", "이전 설치", "중고 판매", "중고 매입", "가스 충전", "철거"].map(x => <span key={x}>{x}</span>)}</div></section>

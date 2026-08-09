@@ -124,6 +124,15 @@ export default function Home() {
     <main>
       <div className="scroll-progress" aria-hidden="true" />
       <header className="topbar"><a className="brand" href="#top"><i>에어컨</i><span>설치·수리·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a></nav><a className="top-cta" href="#estimate">지금 일정 확인</a></header>
+      <aside className="quick-rail" aria-label="빠른 이동 메뉴">
+        <a className="quick-rail-cta" href="#estimate"><b>30초</b><span>빠른 문의</span></a>
+        <a href="#situations"><i>01</i><span>신청 상황</span></a>
+        <a href="#service"><i>02</i><span>서비스</span></a>
+        <a href="#work"><i>03</i><span>작업 현장</span></a>
+        <a href="#area"><i>04</i><span>지역</span></a>
+        <a href="#faq"><i>05</i><span>FAQ</span></a>
+        <a className="quick-rail-top" href="#top" aria-label="맨 위로 이동">↑ TOP</a>
+      </aside>
 
       <section className="hero" id="top">
         <div className="hero-image" role="img" aria-label="에어컨 현장 작업 사진" />
@@ -142,6 +151,11 @@ export default function Home() {
       </section>
 
       <section className="quick-strip"><strong>여기저기 전화하지 마세요. 필요한 작업을 한 번에.</strong><div>{["에어컨 수리", "신규 설치", "이전 설치", "중고 판매", "중고 매입", "가스 충전", "철거"].map(x => <span key={x}>{x}</span>)}</div></section>
+
+      <section className="conversion-banner" aria-label="빠른 상담 안내">
+        <div><p>무엇을 신청해야 할지 몰라도 괜찮습니다</p><h2>증상과 지역만 남기고,<br />가능한 작업부터 물어보세요.</h2><span>수리인지 교체인지, 설치가 가능한 지역인지 확인 항목부터 안내해드립니다.</span></div>
+        <a href="#estimate"><small>비용 결제 없이</small><strong>문의해서 물어보기</strong><b>→</b></a>
+      </section>
 
       <section className="situations section" id="situations">
         <div className="section-title situations-title"><p>WHEN TO ASK</p><h2>미루면 불편은 길어집니다.<br /><em>이럴 때 바로 신청하세요.</em></h2><span>에어컨 용어는 몰라도 됩니다. 지금 처한 상황만 고르면 필요한 작업부터 함께 확인합니다.</span></div>
@@ -171,7 +185,7 @@ export default function Home() {
       </section>
 
       <section className="work-section" id="work">
-        <div className="work-copy"><p>REAL WORK</p><h2>광고용 이미지가 아닙니다.<br />직접 작업한 현장을<br /><em>보여드립니다.</em></h2><span>배관 한 줄, 실외기 위치 하나도 현장마다 다릅니다. 말뿐인 최저가보다 실제 작업 조건을 확인하고 안내합니다.</span><a href="#estimate">내 현장도 바로 물어보기 →</a></div>
+        <div className="work-copy"><p>REAL WORK</p><h2><span>광고용 이미지가</span><span>아닙니다.</span><span>직접 작업한 현장을</span><em>보여드립니다.</em></h2><span>배관 한 줄, 실외기 위치 하나도 현장마다 다릅니다. 말뿐인 최저가보다 실제 작업 조건을 확인하고 안내합니다.</span><a href="#estimate">내 현장도 문의해서 물어보기 →</a></div>
         <div className="work-gallery" aria-label="실제 에어컨 작업 사진 슬라이드">
           <div className="gallery-head"><span><i /> 실제 현장 사진 7장</span><small>마우스를 올리면 멈춥니다</small></div>
           <div className="gallery-viewport">
@@ -198,7 +212,7 @@ export default function Home() {
 
       <section className="final"><div><p>검색만으로는 집이 시원해지지 않습니다.</p><h2>업체 찾기는 여기까지.<br /><em>지금 가능한 일정부터 확인하세요.</em></h2><span>결제 없는 30초 신청으로 지역과 작업 가능 여부를 확인할 수 있습니다.</span></div><LeadForm compact /></section>
       <footer><div className="footer-top"><div className="brand"><i>에어컨</i><span>설치·수리·중고</span></div><nav><a href="/terms">서비스 이용안내</a><a href="/privacy"><strong>개인정보처리방침</strong></a></nav></div><div className="business-info"><p>상호 <b>[대표 확인 필요]</b>　 대표자 김대곤　 사업자등록번호 <b>[대표 확인 필요]</b></p><p>사업장 주소 <b>[대표 확인 필요]</b>　 대표전화 <b>[대표 확인 필요]</b>　 이메일 <b>[대표 확인 필요]</b></p><p>개인정보 보호책임자 김대곤 <b>[담당 및 연락처 확인 필요]</b></p></div><p className="copyright">© 2026 <b>[상호 확인 필요]</b>. All rights reserved.</p></footer>
-      <nav className="sticky"><a href="#estimate">지금 가능한 일정 확인하기 <b>→</b></a></nav>
+      <nav className="sticky"><a href="#estimate"><span>문의해서 물어보기</span><small>지역·증상만 남기면 됩니다</small><b>→</b></a></nav>
     </main>
   );
 }

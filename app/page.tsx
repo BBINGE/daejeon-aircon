@@ -58,8 +58,30 @@ export default function Home() {
 
       <section className="quick-strip"><strong>지금 필요한 작업, 한 번에 문의하세요</strong><div>{["에어컨 수리", "신규 설치", "이전 설치", "중고 판매", "중고 매입", "가스 충전", "철거"].map(x => <span key={x}>{x}</span>)}</div></section>
 
+      <section className="situations section" id="situations">
+        <div className="section-title situations-title"><p>WHEN TO ASK</p><h2>이럴 때,<br /><em>바로 신청하세요.</em></h2><span>에어컨 용어를 몰라도 괜찮습니다. 지금 처한 상황만 선택하면 필요한 작업부터 함께 확인합니다.</span></div>
+        <div className="situation-grid">
+          <article>
+            <div className="situation-icon">01</div><p className="situation-label">이전설치 · 신규설치</p><h3>이사·입주 날짜가<br />정해졌다면</h3>
+            <ul><li>이사하면서 기존 에어컨을 옮겨야 할 때</li><li>새집·신혼집에 처음 설치해야 할 때</li><li>사무실이나 매장을 이전·오픈할 때</li><li>철거와 재설치를 한 번에 맡기고 싶을 때</li></ul>
+            <a href="#estimate">설치 일정 확인하기 <b>→</b></a>
+          </article>
+          <article>
+            <div className="situation-icon">02</div><p className="situation-label">에어컨 수리</p><h3>켜도 시원하지<br />않다면</h3>
+            <ul><li>찬바람이 약하거나 아예 나오지 않을 때</li><li>실내기에서 물이 떨어지거나 소리가 날 때</li><li>작동 중 꺼짐·냄새·오류가 반복될 때</li><li>가스 충전인지 수리인지 판단하기 어려울 때</li></ul>
+            <a href="#estimate">증상 상담 신청하기 <b>→</b></a>
+          </article>
+          <article>
+            <div className="situation-icon">03</div><p className="situation-label">중고 에어컨 구매</p><h3>새 제품 비용이<br />부담된다면</h3>
+            <ul><li>예산에 맞는 중고 제품을 찾고 있을 때</li><li>원룸·사무실·매장에 빠르게 필요할 때</li><li>제품 구매와 설치를 함께 문의하고 싶을 때</li><li>어떤 용량과 형태가 맞는지 모를 때</li></ul>
+            <a href="#estimate">중고 제품 문의하기 <b>→</b></a>
+          </article>
+        </div>
+        <div className="audience-banner"><div><span>공간이 달라도 상담은 한 번에</span><strong>가정집부터 기업·사무실·소상공인 매장까지</strong><p>공간 용도와 면적, 설치 환경을 확인한 뒤 알맞은 제품과 작업 가능 여부를 안내드립니다.</p></div><div className="audience-types">{["아파트·주택", "원룸·오피스텔", "기업·사무실", "카페·음식점", "미용실·학원", "일반 매장"].map(x=><span key={x}>✓ {x}</span>)}</div></div>
+      </section>
+
       <section className="section service-section" id="service">
-        <div className="section-title"><p>WHAT WE DO</p><h2>덥고 급할수록<br /><em>일정부터 잡아야 합니다.</em></h2><span>서비스가 정확히 정해지지 않았어도 괜찮습니다. 현재 상황을 남기면 필요한 작업을 함께 확인합니다.</span></div>
+        <div className="section-title"><p>WHAT WE DO</p><h2>필요한 작업을<br /><em>한 번에 확인하세요.</em></h2><span>설치부터 수리와 중고 제품까지, 상담 후 현장에 필요한 작업과 가능 일정을 확인합니다.</span></div>
         <div className="service-grid">{services.map(([title, desc], i) => <article key={title}><b>0{i + 1}</b><h3>{title}</h3><p>{desc}</p><a href="#estimate">가능 여부 확인 →</a></article>)}</div>
       </section>
 

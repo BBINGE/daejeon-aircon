@@ -30,7 +30,7 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
         <label><span>연락처</span><input required inputMode="tel" autoComplete="tel" placeholder="010-0000-0000" pattern="[0-9-]{10,13}" /></label>
       </div>
       <label className="agree"><input type="checkbox" required /> 개인정보 수집·이용에 동의합니다 <button type="button">내용 보기</button></label>
-      <button className="submit" type="submit">내 지역 빠른 견적 받기 <b>→</b></button>
+      <button className="submit" type="submit"><span>내 지역 빠른 견적 받기</span><b aria-hidden="true">→</b></button>
       <p className="form-note">접수 후 지역과 기사 일정을 확인해 연락드립니다.</p>
     </form>
   );
@@ -47,7 +47,7 @@ export default function Home() {
         <div className="hero-inner">
           <div className="hero-copy">
             <p className="eyebrow"><span /> 여름철 설치·수리 일정 확인 중</p>
-            <h1>에어컨,<br /><em>기다리다 여름 다 갑니다.</em></h1>
+            <h1><span>에어컨,</span><em><span>기다리다</span><span>여름 다 갑니다.</span></em></h1>
             <p className="hero-sub">에어컨 수리·설치·이전설치·중고 판매까지.<br />지금 우리 지역 작업 가능 여부부터 확인하세요.</p>
             <div className="trust-row"><span>✓ 실제 현장 사진</span><span>✓ 지역별 일정 확인</span><span>✓ 30초 문의</span></div>
             <div className="hero-guide"><strong>어떤 서비스를 골라야 할지 모르겠나요?</strong><span>증상과 상황을 확인한 뒤 필요한 작업부터 안내해드립니다.</span></div>

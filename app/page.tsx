@@ -11,6 +11,16 @@ const services = [
 
 const areas = ["대전", "세종·조치원", "청주", "천안", "공주", "계룡", "논산", "부여", "금산", "옥천", "전주", "익산", "무주"];
 
+const workPhotos = [
+  ["/images/install.webp", "실내기 설치", "벽걸이 설치"],
+  ["/images/service.webp", "제품 점검", "현장 점검"],
+  ["/images/roof.webp", "옥상 작업", "실외기 설치"],
+  ["/images/work.webp", "실외기 작업", "배관·실외기"],
+  ["/images/repair.webp", "수리 작업", "에어컨 수리"],
+  ["/images/outdoor.webp", "외부 작업", "실외기 점검"],
+  ["/images/unit.webp", "제품 설치", "설치 완료"],
+];
+
 function LeadForm({ compact = false }: { compact?: boolean }) {
   const [sent, setSent] = useState(false);
   function submit(e: FormEvent<HTMLFormElement>) {
@@ -134,7 +144,13 @@ export default function Home() {
 
       <section className="work-section" id="work">
         <div className="work-copy"><p>REAL WORK</p><h2>말보다 현장.<br />직접 작업한 사진으로<br /><em>확인하세요.</em></h2><span>배관 한 줄, 실외기 위치 하나도 현장마다 다릅니다. 사진만 보고 정찰가를 약속하기보다 작업 조건을 확인하고 안내합니다.</span><a href="#estimate">내 현장 견적 물어보기 →</a></div>
-        <div className="photo-grid"><img src="/images/install.webp" alt="실내 에어컨 설치 작업" /><img src="/images/service.webp" alt="에어컨 점검 현장" /><img src="/images/roof.webp" alt="옥상 실외기 작업" /><img src="/images/work.webp" alt="실외기 설치 작업" /></div>
+        <div className="work-gallery" aria-label="실제 에어컨 작업 사진 슬라이드">
+          <div className="gallery-head"><span><i /> 실제 현장 사진 7장</span><small>마우스를 올리면 멈춥니다</small></div>
+          <div className="gallery-viewport">
+            <div className="gallery-track">{[...workPhotos, ...workPhotos].map(([src, alt, label], index) => <figure key={`${src}-${index}`} aria-hidden={index >= workPhotos.length}><img src={src} alt={index < workPhotos.length ? alt : ""} /><figcaption><span>{String((index % workPhotos.length) + 1).padStart(2,"0")}</span>{label}</figcaption></figure>)}</div>
+          </div>
+          <div className="gallery-hint"><span>←</span> 옆으로 밀어 더 보기 <span>→</span></div>
+        </div>
       </section>
 
       <section className="price-section section">

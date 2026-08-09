@@ -2,6 +2,8 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
+const LEAD_API_URL = "https://kimdaegon-aircon.bbinge95.chatgpt.site/api/leads";
+
 const services = [
   ["에어컨 수리", "안 시원하고, 물이 새고, 소리가 난다면 참지 말고 증상부터 알려주세요."],
   ["에어컨 설치", "벽걸이·스탠드·2in1·업소용까지. 필요한 날짜를 놓치기 전에 확인하세요."],
@@ -33,16 +35,18 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
     const data = new FormData(form);
     const params = new URLSearchParams(window.location.search);
     try {
-      const response = await fetch("/api/leads", {
+      const response = await fetch(LEAD_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          region: data.get("region"), inquiryType: data.get("inquiryType"), airconType: data.get("airconType"), phone: data.get("phone"), consent: data.get("consent") === "on",
+          region: data.get("region"), inquiryType: data.get("inquiryType"), airconType: data.get("airconType"), phone: data.get("phone"), consent: data.get("consent") === "on", companyWebsite: data.get("companyWebsite"),
           sourceUrl: window.location.href, referrer: document.referrer || null,
           utmSource: params.get("utm_source"), utmMedium: params.get("utm_medium"), utmCampaign: params.get("utm_campaign"), utmContent: params.get("utm_content"), utmTerm: params.get("utm_term"),
         }),
       });
-      const result = await response.json() as { error?: string };
+      const responseText = await response.text();
+      let result: { error?: string } = {};
+      try { result = JSON.parse(responseText) as { error?: string }; } catch { throw new Error("접수 서버 연결에 실패했습니다. 전화 상담 010-9183-2200으로 연락해주세요."); }
       if (!response.ok) throw new Error(result.error || "접수에 실패했습니다.");
       setSent(true);
     } catch (error) {
@@ -56,6 +60,7 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
 
   return (
     <form className={`lead-form ${compact ? "compact" : ""}`} onSubmit={submit} id={compact ? "final-form" : "estimate"}>
+      <label className="hp-field" aria-hidden="true">홈페이지<input name="companyWebsite" tabIndex={-1} autoComplete="off" /></label>
       <div className="form-heading"><span>30초면 신청 완료</span><h2>지금 접수하고, 가능한 일정부터 확보하세요</h2></div>
       <div className="form-grid">
         <label><span>지역</span><select name="region" required defaultValue=""><option value="" disabled>지역을 선택하세요</option>{areas.map(a => <option key={a}>{a}</option>)}<option>기타 지역</option></select></label>

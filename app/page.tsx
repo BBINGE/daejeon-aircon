@@ -3,10 +3,10 @@
 import { FormEvent, useState } from "react";
 
 const services = [
-  ["설치·이전설치", "이사 날짜가 잡혔다면 에어컨 일정부터 확인하세요."],
-  ["수리·가스충전", "찬바람이 약하거나 물이 떨어지면 더 기다리지 마세요."],
-  ["중고 매입·판매", "버리기 전에 매입 가능 여부부터 확인하세요."],
-  ["철거·재설치", "폐업·이전 철거부터 재설치까지 한 번에 문의하세요."],
+  ["에어컨 수리", "찬바람이 약하거나 물이 떨어지면 더 기다리지 마세요."],
+  ["에어컨 설치", "벽걸이부터 스탠드·2in1·업소용까지 설치 일정을 확인하세요."],
+  ["에어컨 이전설치", "이사 날짜가 잡혔다면 철거와 재설치 일정부터 확인하세요."],
+  ["중고 에어컨 판매", "예산과 공간에 맞는 중고 제품 구매·설치를 함께 문의하세요."],
 ];
 
 const areas = ["대전", "세종·조치원", "청주", "천안", "공주", "계룡", "논산", "부여", "금산", "옥천", "전주", "익산", "무주"];
@@ -25,7 +25,7 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
       <div className="form-heading"><span>30초 빠른 접수</span><h2>가능한 일정과 견적부터 확인하세요</h2></div>
       <div className="form-grid">
         <label><span>지역</span><select required defaultValue=""><option value="" disabled>지역을 선택하세요</option>{areas.map(a => <option key={a}>{a}</option>)}<option>기타 지역</option></select></label>
-        <label><span>문의 유형</span><select required defaultValue=""><option value="" disabled>필요한 작업을 선택하세요</option><option>설치</option><option>이전설치</option><option>수리·가스충전</option><option>중고 매입</option><option>중고 구매</option><option>철거</option><option>기타</option></select></label>
+        <label><span>문의 유형</span><select required defaultValue=""><option value="" disabled>필요한 작업을 선택하세요</option><option>에어컨 수리</option><option>에어컨 설치</option><option>에어컨 이전설치</option><option>중고 에어컨 구매</option><option>중고 에어컨 매입 문의</option><option>가스 충전</option><option>철거</option><option>기타</option></select></label>
         <label><span>에어컨 종류</span><select required defaultValue=""><option value="" disabled>제품 종류를 선택하세요</option><option>벽걸이</option><option>스탠드</option><option>2in1</option><option>시스템</option><option>업소용</option><option>잘 모르겠음</option></select></label>
         <label><span>연락처</span><input required inputMode="tel" autoComplete="tel" placeholder="010-0000-0000" pattern="[0-9-]{10,13}" /></label>
       </div>
@@ -48,14 +48,14 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow"><span /> 여름철 설치·수리 일정 확인 중</p>
             <h1>에어컨,<br /><em>기다리다 여름 다 갑니다.</em></h1>
-            <p className="hero-sub">설치부터 이전·수리·철거·중고 매입까지.<br />지금 우리 지역 작업 가능 여부부터 확인하세요.</p>
+            <p className="hero-sub">에어컨 수리·설치·이전설치·중고 판매까지.<br />지금 우리 지역 작업 가능 여부부터 확인하세요.</p>
             <div className="trust-row"><span>✓ 실제 현장 사진</span><span>✓ 지역별 일정 확인</span><span>✓ 30초 문의</span></div>
           </div>
           <LeadForm />
         </div>
       </section>
 
-      <section className="quick-strip"><strong>지금 필요한 작업, 한 번에 문의하세요</strong><div>{["신규 설치", "이전 설치", "수리", "가스 충전", "중고 매입", "철거"].map(x => <span key={x}>{x}</span>)}</div></section>
+      <section className="quick-strip"><strong>지금 필요한 작업, 한 번에 문의하세요</strong><div>{["에어컨 수리", "신규 설치", "이전 설치", "중고 판매", "중고 매입", "가스 충전", "철거"].map(x => <span key={x}>{x}</span>)}</div></section>
 
       <section className="section service-section">
         <div className="section-title"><p>WHAT WE DO</p><h2>덥고 급할수록<br /><em>일정부터 잡아야 합니다.</em></h2><span>서비스가 정확히 정해지지 않았어도 괜찮습니다. 현재 상황을 남기면 필요한 작업을 함께 확인합니다.</span></div>

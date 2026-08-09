@@ -34,8 +34,8 @@
 - 공개 GitHub 저장소 `BBINGE/daejeon-aircon` 생성 및 `main` 브랜치 푸시
 - GitHub Pages 공개 주소: `https://bbinge.github.io/daejeon-aircon/`
 - GitHub Pages는 `docs/` 정적 배포본을 사용하며 PC 1280px·모바일 390px 공개 화면 검수 완료
-- GitHub Pages 자체에서는 서버 API를 실행할 수 없으므로 현재 공개 주소의 문의 폼은 D1에 저장되지 않음
-- 실제 광고 오픈 전 Cloudflare Worker 등 별도 공개 `/api/leads` 엔드포인트를 연결해야 함
+- GitHub Pages 고객 화면은 공개 Sites 백엔드 `https://kimdaegon-aircon.bbinge95.chatgpt.site/api/leads`에 연결되어 실제 D1 DB에 저장됨
+- Sites 백엔드는 공개 접근 상태지만 POST 접수만 인증 없이 허용하며, DB 조회·상태 변경 GET/PATCH는 `ADMIN_KEY`로 보호
 - PC 우측 고정 퀵 네비, 모바일 하단 2행 CTA, 상단 프로모션 배너 추가
 - 실제 현장 섹션 제목을 문장 단위 4행으로 고정해 어색한 한글 줄바꿈 제거
 - 김대곤 대표 상담 전화 `010-9183-2200` 확인 및 PC·모바일 전화 CTA와 정책 페이지에 `tel:01091832200` 연결
@@ -43,7 +43,12 @@
 - GitHub Pages 폼의 API 목적지를 Sites 공개 백엔드 `/api/leads`로 분리
 - `/api/leads`에 GitHub Pages CORS, 봇 허니팟, 2분 중복 접수 방지, 관리자 키 인증 GET/PATCH 추가
 - GitHub Pages `/admin.html`에 문의 목록, 검색, 상태 변경, 전화 연결, CSV 다운로드 관리자 화면 추가
+- 관리자 화면의 React hydration 오류를 제거하고 독립형 정적 페이지로 교체해 로그인·조회·상태 변경 동작 확인
 - 관리자 키는 GitHub나 코드가 아닌 Sites 비밀 환경 변수 `ADMIN_KEY`에만 저장
+- 고객 PC·모바일 주소: `https://bbinge.github.io/daejeon-aircon/`
+- DB 관리자 주소: `https://bbinge.github.io/daejeon-aircon/admin.html`
+- Sites 프로젝트 ID는 `.openai/hosting.json`에 저장되어 있으며 배포와 D1 연결에 재사용
+- 실제 접수→D1 저장→관리자 인증 조회→상태 변경까지 운영 환경에서 검증 완료
 - 개인정보 전문, 사업자 정보, 대표 연락처는 미확정 상태
 
 ## 1차 카피 방향
@@ -57,10 +62,18 @@
 ## 다음 작업
 
 1. 대표 전화번호, 상호, 사업자 정보 확인
-2. GitHub Pages 폼이 사용할 공개 API와 D1 저장 연결
-3. 개인정보 수집 및 운영 구조 최종 확정
-4. GA4 전환 이벤트 및 네이버 광고 추적 연결
+2. 개인정보 수집 및 운영 구조 최종 확정
+3. GA4 전환 이벤트 및 네이버 광고 추적 연결
+4. 테스트 문의 2건 정리 및 관리자 삭제 기능 필요 여부 결정
 5. 도메인 구매 후 GitHub Pages 사용자 도메인 연결
+
+## 다른 PC에서 이어가기
+
+1. 공개 저장소 `https://github.com/BBINGE/daejeon-aircon`을 clone 또는 pull한다.
+2. 새 작업을 시작하기 전에 이 `HANDOFF.md`와 `PRELAUNCH_CHECKLIST.md`를 읽는다.
+3. 공개 고객 화면은 GitHub Pages, 문의 저장·조회 API와 D1은 Sites가 담당하는 분리 구조를 유지한다.
+4. 관리자 비밀번호는 저장소에 없으므로 사용자에게 별도로 전달받는다. 코드나 커밋에 추가하지 않는다.
+5. 원본 사진 폴더는 Git에 포함되지 않는다. 웹에 쓰는 최적화 이미지와 배포 파일은 저장소에 포함되어 있다.
 
 ## 주의
 

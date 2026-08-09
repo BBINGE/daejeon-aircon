@@ -39,7 +39,7 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
 export default function Home() {
   return (
     <main>
-      <header className="topbar"><a className="brand" href="#top"><i>에어컨</i><span>설치·수리·중고</span></a><a className="top-cta" href="#estimate">빠른 견적 신청</a></header>
+      <header className="topbar"><a className="brand" href="#top"><i>에어컨</i><span>설치·수리·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a></nav><a className="top-cta" href="#estimate">빠른 견적 신청</a></header>
 
       <section className="hero" id="top">
         <div className="hero-image" role="img" aria-label="에어컨 현장 작업 사진" />
@@ -50,6 +50,7 @@ export default function Home() {
             <h1>에어컨,<br /><em>기다리다 여름 다 갑니다.</em></h1>
             <p className="hero-sub">에어컨 수리·설치·이전설치·중고 판매까지.<br />지금 우리 지역 작업 가능 여부부터 확인하세요.</p>
             <div className="trust-row"><span>✓ 실제 현장 사진</span><span>✓ 지역별 일정 확인</span><span>✓ 30초 문의</span></div>
+            <div className="hero-guide"><strong>어떤 서비스를 골라야 할지 모르겠나요?</strong><span>증상과 상황을 확인한 뒤 필요한 작업부터 안내해드립니다.</span></div>
           </div>
           <LeadForm />
         </div>
@@ -57,12 +58,12 @@ export default function Home() {
 
       <section className="quick-strip"><strong>지금 필요한 작업, 한 번에 문의하세요</strong><div>{["에어컨 수리", "신규 설치", "이전 설치", "중고 판매", "중고 매입", "가스 충전", "철거"].map(x => <span key={x}>{x}</span>)}</div></section>
 
-      <section className="section service-section">
+      <section className="section service-section" id="service">
         <div className="section-title"><p>WHAT WE DO</p><h2>덥고 급할수록<br /><em>일정부터 잡아야 합니다.</em></h2><span>서비스가 정확히 정해지지 않았어도 괜찮습니다. 현재 상황을 남기면 필요한 작업을 함께 확인합니다.</span></div>
         <div className="service-grid">{services.map(([title, desc], i) => <article key={title}><b>0{i + 1}</b><h3>{title}</h3><p>{desc}</p><a href="#estimate">가능 여부 확인 →</a></article>)}</div>
       </section>
 
-      <section className="work-section">
+      <section className="work-section" id="work">
         <div className="work-copy"><p>REAL WORK</p><h2>말보다 현장.<br />직접 작업한 사진으로<br /><em>확인하세요.</em></h2><span>배관 한 줄, 실외기 위치 하나도 현장마다 다릅니다. 사진만 보고 정찰가를 약속하기보다 작업 조건을 확인하고 안내합니다.</span><a href="#estimate">내 현장 견적 물어보기 →</a></div>
         <div className="photo-grid"><img src="/images/install.webp" alt="실내 에어컨 설치 작업" /><img src="/images/service.webp" alt="에어컨 점검 현장" /><img src="/images/roof.webp" alt="옥상 실외기 작업" /><img src="/images/work.webp" alt="실외기 설치 작업" /></div>
       </section>
@@ -73,14 +74,14 @@ export default function Home() {
         <p className="price-note">현장 조건 없이 만든 ‘최저가’는 실제 결제 금액과 달라질 수 있습니다.<br />지역과 작업 유형을 남겨주시면 필요한 확인 사항부터 안내드립니다.</p>
       </section>
 
-      <section className="area-section">
+      <section className="area-section" id="area">
         <div><p>WORK AREA</p><h2>우리 동네도 오나요?<br /><em>먼저 확인해드릴게요.</em></h2><span>대전·세종·충청권 중심, 전북 일부 지역까지 상담합니다. 기타 지역은 기사 일정과 작업 가능 여부 확인 후 안내드립니다.</span><a href="#estimate">내 지역 일정 확인 →</a></div>
         <div className="area-card"><strong>주요 상담 지역</strong><div>{areas.map(a=><span key={a}>{a}</span>)}</div><small>※ 접수 시점과 작업 조건에 따라 가능 여부가 달라질 수 있습니다.</small></div>
       </section>
 
       <section className="process section"><div className="section-title"><p>HOW IT WORKS</p><h2>복잡하게 말고,<br /><em>딱 4단계로.</em></h2></div><ol>{[["01","빠른 신청","지역·작업·연락처만 남겨주세요."],["02","전화 확인","현장 상황과 필요한 작업을 확인합니다."],["03","일정·견적 안내","작업 가능 기사와 일정을 확인해 안내합니다."],["04","현장 작업","확정한 일정에 맞춰 작업을 진행합니다."]].map(([n,t,d])=><li key={n}><b>{n}</b><h3>{t}</h3><p>{d}</p></li>)}</ol></section>
 
-      <section className="faq section"><div className="section-title"><p>FAQ</p><h2>신청 전,<br /><em>이것만 확인하세요.</em></h2></div><div>{[["당일 작업도 가능한가요?","지역과 접수 시간, 기사 일정에 따라 달라집니다. 접수 후 가장 빠른 가능 일정을 확인해드립니다."],["중고 에어컨도 설치하나요?","중고 제품 설치와 매입·판매 모두 문의할 수 있습니다. 제품과 현장 상태를 먼저 확인합니다."],["철거만 따로 요청할 수 있나요?","가능합니다. 철거 위치와 제품 종류, 이동 여부를 남겨주세요."],["수리비는 어떻게 정해지나요?","증상과 제품, 부품 및 냉매 상태에 따라 달라집니다. 전화 확인 후 필요한 점검 절차를 안내합니다."],["출장비나 추가비용이 있나요?","지역과 작업 조건에 따라 발생할 수 있어 작업 확정 전에 확인할 항목을 안내드립니다."]].map(([q,a])=><details key={q}><summary>{q}<i>+</i></summary><p>{a}</p></details>)}</div></section>
+      <section className="faq section" id="faq"><div className="section-title"><p>FAQ</p><h2>신청 전,<br /><em>이것만 확인하세요.</em></h2></div><div>{[["당일 작업도 가능한가요?","지역과 접수 시간, 기사 일정에 따라 달라집니다. 접수 후 가장 빠른 가능 일정을 확인해드립니다."],["중고 에어컨도 설치하나요?","중고 제품 설치와 매입·판매 모두 문의할 수 있습니다. 제품과 현장 상태를 먼저 확인합니다."],["철거만 따로 요청할 수 있나요?","가능합니다. 철거 위치와 제품 종류, 이동 여부를 남겨주세요."],["수리비는 어떻게 정해지나요?","증상과 제품, 부품 및 냉매 상태에 따라 달라집니다. 전화 확인 후 필요한 점검 절차를 안내합니다."],["출장비나 추가비용이 있나요?","지역과 작업 조건에 따라 발생할 수 있어 작업 확정 전에 확인할 항목을 안내드립니다."]].map(([q,a])=><details key={q}><summary>{q}<i>+</i></summary><p>{a}</p></details>)}</div></section>
 
       <section className="final"><div><p>아직도 업체만 찾고 계신가요?</p><h2>더 더워지기 전에<br /><em>가능한 일정부터 잡으세요.</em></h2><span>30초 신청으로 지역과 작업 가능 여부를 확인하세요.</span></div><LeadForm compact /></section>
       <footer><div className="brand"><i>에어컨</i><span>설치·수리·중고</span></div><p>상호·대표자·사업자등록번호·주소·연락처 입력 예정</p><p>© 2026. All rights reserved.</p></footer>

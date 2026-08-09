@@ -23,9 +23,33 @@ const workPhotos = [
 
 function LeadForm({ compact = false }: { compact?: boolean }) {
   const [sent, setSent] = useState(false);
-  function submit(e: FormEvent<HTMLFormElement>) {
+  const [sending, setSending] = useState(false);
+  const [formError, setFormError] = useState("");
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+    setFormError("");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const params = new URLSearchParams(window.location.search);
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          region: data.get("region"), inquiryType: data.get("inquiryType"), airconType: data.get("airconType"), phone: data.get("phone"), consent: data.get("consent") === "on",
+          sourceUrl: window.location.href, referrer: document.referrer || null,
+          utmSource: params.get("utm_source"), utmMedium: params.get("utm_medium"), utmCampaign: params.get("utm_campaign"), utmContent: params.get("utm_content"), utmTerm: params.get("utm_term"),
+        }),
+      });
+      const result = await response.json() as { error?: string };
+      if (!response.ok) throw new Error(result.error || "접수에 실패했습니다.");
+      setSent(true);
+    } catch (error) {
+      setFormError(error instanceof Error ? error.message : "접수에 실패했습니다.");
+    } finally {
+      setSending(false);
+    }
   }
 
   if (sent) return <div className="thanks"><strong>접수가 완료됐습니다.</strong><span>확인 후 작업 가능 지역과 일정을 안내드리겠습니다.</span></div>;
@@ -34,13 +58,14 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
     <form className={`lead-form ${compact ? "compact" : ""}`} onSubmit={submit} id={compact ? "final-form" : "estimate"}>
       <div className="form-heading"><span>30초 빠른 접수</span><h2>가능한 일정과 견적부터 확인하세요</h2></div>
       <div className="form-grid">
-        <label><span>지역</span><select required defaultValue=""><option value="" disabled>지역을 선택하세요</option>{areas.map(a => <option key={a}>{a}</option>)}<option>기타 지역</option></select></label>
-        <label><span>문의 유형</span><select required defaultValue=""><option value="" disabled>필요한 작업을 선택하세요</option><option>에어컨 수리</option><option>에어컨 설치</option><option>에어컨 이전설치</option><option>중고 에어컨 구매</option><option>중고 에어컨 매입 문의</option><option>가스 충전</option><option>철거</option><option>기타</option></select></label>
-        <label><span>에어컨 종류</span><select required defaultValue=""><option value="" disabled>제품 종류를 선택하세요</option><option>벽걸이</option><option>스탠드</option><option>2in1</option><option>시스템</option><option>업소용</option><option>잘 모르겠음</option></select></label>
-        <label><span>연락처</span><input required inputMode="tel" autoComplete="tel" placeholder="010-0000-0000" pattern="[0-9-]{10,13}" /></label>
+        <label><span>지역</span><select name="region" required defaultValue=""><option value="" disabled>지역을 선택하세요</option>{areas.map(a => <option key={a}>{a}</option>)}<option>기타 지역</option></select></label>
+        <label><span>문의 유형</span><select name="inquiryType" required defaultValue=""><option value="" disabled>필요한 작업을 선택하세요</option><option>에어컨 수리</option><option>에어컨 설치</option><option>에어컨 이전설치</option><option>중고 에어컨 구매</option><option>중고 에어컨 매입 문의</option><option>가스 충전</option><option>철거</option><option>기타</option></select></label>
+        <label><span>에어컨 종류</span><select name="airconType" required defaultValue=""><option value="" disabled>제품 종류를 선택하세요</option><option>벽걸이</option><option>스탠드</option><option>2in1</option><option>시스템</option><option>업소용</option><option>잘 모르겠음</option></select></label>
+        <label><span>연락처</span><input name="phone" required inputMode="tel" autoComplete="tel" placeholder="010-0000-0000" pattern="01[016789]-?[0-9]{3,4}-?[0-9]{4}" /></label>
       </div>
-      <label className="agree"><input type="checkbox" required /> <span>[필수] 개인정보 수집·이용 동의</span> <a href="/privacy">내용 보기</a></label>
-      <button className="submit" type="submit"><span>내 지역 빠른 견적 받기</span><b aria-hidden="true">→</b></button>
+      <label className="agree"><input name="consent" type="checkbox" required /> <span>[필수] 개인정보 수집·이용 동의</span> <a href="/privacy">내용 보기</a></label>
+      {formError && <p className="form-error" role="alert">{formError}</p>}
+      <button className="submit" type="submit" disabled={sending}><span>{sending ? "접수 중입니다" : "내 지역 빠른 견적 받기"}</span><b aria-hidden="true">→</b></button>
       <p className="form-note">접수 후 지역과 기사 일정을 확인해 연락드립니다.</p>
     </form>
   );

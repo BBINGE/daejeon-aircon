@@ -131,6 +131,7 @@ export default function Home() {
         <a href="#work"><i>03</i><span>작업 현장</span></a>
         <a href="#area"><i>04</i><span>지역</span></a>
         <a href="#faq"><i>05</i><span>FAQ</span></a>
+        <a className="quick-rail-call" href="tel:01091832200"><b>☎</b><span>전화 상담</span></a>
         <a className="quick-rail-top" href="#top" aria-label="맨 위로 이동">↑ TOP</a>
       </aside>
 
@@ -154,7 +155,7 @@ export default function Home() {
 
       <section className="conversion-banner" aria-label="빠른 상담 안내">
         <div><p>무엇을 신청해야 할지 몰라도 괜찮습니다</p><h2>증상과 지역만 남기고,<br />가능한 작업부터 물어보세요.</h2><span>수리인지 교체인지, 설치가 가능한 지역인지 확인 항목부터 안내해드립니다.</span></div>
-        <a href="#estimate"><small>비용 결제 없이</small><strong>문의해서 물어보기</strong><b>→</b></a>
+        <div className="conversion-actions"><a href="#estimate"><small>비용 결제 없이</small><strong>문의 남기기</strong><b>→</b></a><a className="conversion-call" href="tel:01091832200"><small>바로 연결하기</small><strong>010-9183-2200</strong><b>☎</b></a></div>
       </section>
 
       <section className="situations section" id="situations">
@@ -211,8 +212,8 @@ export default function Home() {
       <section className="faq section" id="faq"><div className="section-title"><p>FAQ</p><h2>망설이는 이유,<br /><em>여기서 먼저 풀어보세요.</em></h2></div><div>{[["오늘 바로 작업할 수 있나요?","지역과 접수 시간, 기사 일정에 따라 달라집니다. 접수 후 확인 가능한 가장 빠른 일정을 안내드립니다."],["중고 에어컨도 설치하나요?","중고 제품 설치와 매입·판매 모두 문의할 수 있습니다. 제품과 현장 상태를 먼저 확인합니다."],["철거만 따로 요청할 수 있나요?","가능합니다. 철거 위치와 제품 종류, 이동 여부를 남겨주세요."],["수리비는 어떻게 정해지나요?","증상과 제품, 부품 및 냉매 상태에 따라 달라집니다. 전화 확인 후 필요한 점검 절차를 안내합니다."],["출장비나 추가비용이 있나요?","지역과 작업 조건에 따라 발생할 수 있어 작업 확정 전에 확인할 항목을 안내드립니다."]].map(([q,a])=><details key={q}><summary>{q}<i>+</i></summary><p>{a}</p></details>)}</div></section>
 
       <section className="final"><div><p>검색만으로는 집이 시원해지지 않습니다.</p><h2>업체 찾기는 여기까지.<br /><em>지금 가능한 일정부터 확인하세요.</em></h2><span>결제 없는 30초 신청으로 지역과 작업 가능 여부를 확인할 수 있습니다.</span></div><LeadForm compact /></section>
-      <footer><div className="footer-top"><div className="brand"><i>에어컨</i><span>설치·수리·중고</span></div><nav><a href="/terms">서비스 이용안내</a><a href="/privacy"><strong>개인정보처리방침</strong></a></nav></div><div className="business-info"><p>상호 <b>[대표 확인 필요]</b>　 대표자 김대곤　 사업자등록번호 <b>[대표 확인 필요]</b></p><p>사업장 주소 <b>[대표 확인 필요]</b>　 대표전화 <b>[대표 확인 필요]</b>　 이메일 <b>[대표 확인 필요]</b></p><p>개인정보 보호책임자 김대곤 <b>[담당 및 연락처 확인 필요]</b></p></div><p className="copyright">© 2026 <b>[상호 확인 필요]</b>. All rights reserved.</p></footer>
-      <nav className="sticky"><a href="#estimate"><span>문의해서 물어보기</span><small>지역·증상만 남기면 됩니다</small><b>→</b></a></nav>
+      <footer><div className="footer-top"><div className="brand"><i>에어컨</i><span>설치·수리·중고</span></div><nav><a href="/terms">서비스 이용안내</a><a href="/privacy"><strong>개인정보처리방침</strong></a></nav></div><div className="business-info"><p>상호 <b>[대표 확인 필요]</b>　 대표자 김대곤　 사업자등록번호 <b>[대표 확인 필요]</b></p><p>사업장 주소 <b>[대표 확인 필요]</b>　 대표전화 <a href="tel:01091832200"><strong>010-9183-2200</strong></a>　 이메일 <b>[대표 확인 필요]</b></p><p>개인정보 보호책임자 김대곤　 연락처 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p></div><p className="copyright">© 2026 <b>[상호 확인 필요]</b>. All rights reserved.</p></footer>
+      <nav className="sticky"><a className="sticky-estimate" href="#estimate"><span>문의 남기기</span><small>지역·증상만 입력</small><b>→</b></a><a className="sticky-call" href="tel:01091832200"><span>전화 상담</span><small>010-9183-2200</small><b>☎</b></a></nav>
     </main>
   );
 }

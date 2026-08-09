@@ -28,7 +28,7 @@ export default function PrivacyPage() {
       <section className="legal-section"><h2>5. 개인정보의 파기</h2><p>보유기간이 경과하거나 처리 목적이 달성된 개인정보는 지체 없이 파기합니다. 전자적 파일은 복구할 수 없는 방법으로 삭제하고, 종이 문서는 분쇄하거나 소각합니다.</p></section>
       <section className="legal-section"><h2>6. 정보주체의 권리와 행사방법</h2><p>정보주체는 자신의 개인정보에 대해 열람, 정정·삭제, 처리정지 및 동의 철회를 요구할 수 있습니다. 아래 개인정보 보호책임자에게 연락하면 본인 확인 후 필요한 조치를 진행합니다.</p></section>
       <section className="legal-section"><h2>7. 안전성 확보 조치</h2><p>회사는 개인정보 접근권한 관리, 전송 및 저장 시 보호조치, 접속기록 보관, 악성프로그램 방지 등 필요한 기술적·관리적 조치를 적용합니다. <span className="placeholder">[실제 DB 구성 후 구현 내용과 일치하는지 확인 필요]</span></p></section>
-      <section className="legal-section"><h2>8. 개인정보 보호책임자</h2><table><tbody><tr><th>책임자</th><td>김대곤 <span className="placeholder">[최종 지정 확인 필요]</span></td></tr><tr><th>전화</th><td><span className="placeholder">[대표 확인 필요]</span></td></tr><tr><th>이메일</th><td><span className="placeholder">[대표 확인 필요]</span></td></tr></tbody></table></section>
+      <section className="legal-section"><h2>8. 개인정보 보호책임자</h2><table><tbody><tr><th>책임자</th><td>김대곤 <span className="placeholder">[최종 지정 확인 필요]</span></td></tr><tr><th>전화</th><td><a href="tel:01091832200">010-9183-2200</a></td></tr><tr><th>이메일</th><td><span className="placeholder">[대표 확인 필요]</span></td></tr></tbody></table></section>
       <section className="legal-section"><h2>9. 방침의 변경</h2><p>이 방침은 <span className="placeholder">[시행일 확인 필요]</span>부터 적용됩니다. 내용이 변경되면 홈페이지를 통해 공지합니다.</p></section>
       <div className="legal-actions"><a href="/#estimate">견적 신청으로 돌아가기</a><a className="secondary" href="/terms">서비스 이용안내 보기</a></div>
     </article>

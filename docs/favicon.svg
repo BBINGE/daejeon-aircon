@@ -1,6 +1,16 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M22 19.2727C22 20.779 20.779 22 19.2727 22H14.7273C13.221 22 12 20.779 12 19.2727V12H19.2727C20.779 12 22 13.221 22 14.7273V19.2727Z" fill="#68C4FF"/>
-<path d="M20 2C21.1046 2 22 2.89543 22 4V7C22 8.10457 21.1046 9 20 9H17C15.8954 9 15 8.10457 15 7V4C15 2.89543 15.8954 2 17 2H20Z" fill="#0C79D8"/>
-<path d="M7 15C8.10457 15 9 15.8954 9 17V20C9 21.1046 8.10457 22 7 22H4C2.89543 22 2 21.1046 2 20V17C2 15.8954 2.89543 15 4 15H7Z" fill="#0C79D8"/>
-<path d="M12 12H4.72727C3.22104 12 2 10.779 2 9.27273V4.72727C2 3.22104 3.22104 2 4.72727 2H9.27273C10.779 2 12 3.22104 12 4.72727V12Z" fill="#2E9EFF"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="에어컨 서비스 심볼">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#278BFF"/>
+      <stop offset="1" stop-color="#075EDB"/>
+    </linearGradient>
+    <linearGradient id="air" x1="19" y1="17" x2="48" y2="49" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#DDFBFF"/>
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="18" fill="url(#bg)"/>
+  <path d="M17 27.5C22.8 20.9 30.8 17.8 40 18.7C44.4 19.1 47.2 21.2 47 24.1C46.8 26.9 44.1 28.5 40.1 27.8C32.8 26.5 26.2 28 20.4 32.3C18.6 33.6 16.2 33 15.2 31.1C14.6 29.9 15.2 28.4 17 27.5Z" fill="url(#air)"/>
+  <path d="M18.1 36.5C24.2 32.1 31.3 30.8 39.5 32.4C43.1 33.1 45.1 35 44.6 37.4C44.1 39.8 41.7 41 38.3 40.1C31.8 38.4 26 39.4 20.7 42.8C18.9 43.9 16.7 43.2 15.9 41.3C15.3 39.7 16.1 37.8 18.1 36.5Z" fill="#FFFFFF"/>
+  <circle cx="48" cy="17" r="4" fill="#59E0F1"/>
 </svg>

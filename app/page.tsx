@@ -29,7 +29,7 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
         <label><span>에어컨 종류</span><select required defaultValue=""><option value="" disabled>제품 종류를 선택하세요</option><option>벽걸이</option><option>스탠드</option><option>2in1</option><option>시스템</option><option>업소용</option><option>잘 모르겠음</option></select></label>
         <label><span>연락처</span><input required inputMode="tel" autoComplete="tel" placeholder="010-0000-0000" pattern="[0-9-]{10,13}" /></label>
       </div>
-      <label className="agree"><input type="checkbox" required /> 개인정보 수집·이용에 동의합니다 <button type="button">내용 보기</button></label>
+      <label className="agree"><input type="checkbox" required /> <span>[필수] 개인정보 수집·이용 동의</span> <a href="/privacy">내용 보기</a></label>
       <button className="submit" type="submit"><span>내 지역 빠른 견적 받기</span><b aria-hidden="true">→</b></button>
       <p className="form-note">접수 후 지역과 기사 일정을 확인해 연락드립니다.</p>
     </form>
@@ -153,7 +153,7 @@ export default function Home() {
       <section className="faq section" id="faq"><div className="section-title"><p>FAQ</p><h2>신청 전,<br /><em>이것만 확인하세요.</em></h2></div><div>{[["당일 작업도 가능한가요?","지역과 접수 시간, 기사 일정에 따라 달라집니다. 접수 후 가장 빠른 가능 일정을 확인해드립니다."],["중고 에어컨도 설치하나요?","중고 제품 설치와 매입·판매 모두 문의할 수 있습니다. 제품과 현장 상태를 먼저 확인합니다."],["철거만 따로 요청할 수 있나요?","가능합니다. 철거 위치와 제품 종류, 이동 여부를 남겨주세요."],["수리비는 어떻게 정해지나요?","증상과 제품, 부품 및 냉매 상태에 따라 달라집니다. 전화 확인 후 필요한 점검 절차를 안내합니다."],["출장비나 추가비용이 있나요?","지역과 작업 조건에 따라 발생할 수 있어 작업 확정 전에 확인할 항목을 안내드립니다."]].map(([q,a])=><details key={q}><summary>{q}<i>+</i></summary><p>{a}</p></details>)}</div></section>
 
       <section className="final"><div><p>아직도 업체만 찾고 계신가요?</p><h2>더 더워지기 전에<br /><em>가능한 일정부터 잡으세요.</em></h2><span>30초 신청으로 지역과 작업 가능 여부를 확인하세요.</span></div><LeadForm compact /></section>
-      <footer><div className="brand"><i>에어컨</i><span>설치·수리·중고</span></div><p>상호·대표자·사업자등록번호·주소·연락처 입력 예정</p><p>© 2026. All rights reserved.</p></footer>
+      <footer><div className="footer-top"><div className="brand"><i>에어컨</i><span>설치·수리·중고</span></div><nav><a href="/terms">서비스 이용안내</a><a href="/privacy"><strong>개인정보처리방침</strong></a></nav></div><div className="business-info"><p>상호 <b>[대표 확인 필요]</b>　 대표자 김대곤　 사업자등록번호 <b>[대표 확인 필요]</b></p><p>사업장 주소 <b>[대표 확인 필요]</b>　 대표전화 <b>[대표 확인 필요]</b>　 이메일 <b>[대표 확인 필요]</b></p><p>개인정보 보호책임자 김대곤 <b>[담당 및 연락처 확인 필요]</b></p></div><p className="copyright">© 2026 <b>[상호 확인 필요]</b>. All rights reserved.</p></footer>
       <nav className="sticky"><a href="#estimate">내 지역 빠른 견적 받기 <b>→</b></a></nav>
     </main>
   );

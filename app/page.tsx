@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const services = [
   ["에어컨 수리", "찬바람이 약하거나 물이 떨어지면 더 기다리지 마세요."],
@@ -37,8 +37,55 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
 }
 
 export default function Home() {
+  useEffect(() => {
+    const root = document.documentElement;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealTargets = document.querySelectorAll(
+      ".section-title, .situation-grid article, .audience-banner, .service-grid article, .work-copy, .photo-grid, .factors span, .area-section > div, .process li, .faq details, .final > div, .final .lead-form"
+    );
+
+    revealTargets.forEach((element, index) => {
+      element.classList.add("scroll-reveal");
+      (element as HTMLElement).style.setProperty("--reveal-order", String(index % 4));
+    });
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.12, rootMargin: "0px 0px -7% 0px" }
+    );
+    revealTargets.forEach(element => observer.observe(element));
+
+    let ticking = false;
+    const updateScroll = () => {
+      const max = root.scrollHeight - window.innerHeight;
+      root.style.setProperty("--scroll-progress", `${max > 0 ? (window.scrollY / max) * 100 : 0}%`);
+      if (!reduced && window.innerWidth > 800) {
+        root.style.setProperty("--hero-parallax", `${Math.min(window.scrollY * 0.12, 72)}px`);
+      }
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    };
+    updateScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   return (
     <main>
+      <div className="scroll-progress" aria-hidden="true" />
       <header className="topbar"><a className="brand" href="#top"><i>에어컨</i><span>설치·수리·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a></nav><a className="top-cta" href="#estimate">빠른 견적 신청</a></header>
 
       <section className="hero" id="top">

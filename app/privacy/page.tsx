@@ -1,36 +1,8 @@
-export default function PrivacyPage() {
-  return <main className="legal-page">
-    <header className="legal-header"><a className="brand" href="/"><i>에어컨</i><span>설치·수리·중고</span></a><a href="/">홈으로 돌아가기</a></header>
-    <article className="legal-content">
-      <span className="legal-badge">사전 오픈 초안 · 대표 확인 필요</span>
-      <h1>개인정보처리방침</h1>
-      <p className="legal-intro"><span className="placeholder">[상호 확인 필요]</span>(이하 “회사”)은 상담 신청자의 개인정보를 중요하게 생각하며 관계 법령에 따라 안전하게 처리하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다.</p>
-      <div className="legal-alert">이 문서는 실제 운영 구조 확정 전 초안입니다. 상호, 사업자 정보, DB 저장 위치, 위탁사, 지역 기사·업체 전달 여부와 명단, 보유기간을 김대곤 대표와 확인한 뒤 공개해야 합니다.</div>
-
-      <section className="legal-section"><h2>1. 개인정보의 처리 목적과 항목</h2><table><tbody>
-        <tr><th>처리 목적</th><td>에어컨 설치·이전설치·수리·철거·중고 제품 관련 상담 접수, 작업 가능 지역 및 일정 확인, 견적 안내, 상담 이력 관리</td></tr>
-        <tr><th>필수 항목</th><td>지역, 문의 유형, 에어컨 종류, 연락처</td></tr>
-        <tr><th>자동 수집 가능 항목</th><td>접속 일시, 접속 URL, 유입 경로, UTM 정보, 광고 키워드, 브라우저·기기 정보, IP 주소 <span className="placeholder">[실제 수집 여부 확인 필요]</span></td></tr>
-        <tr><th>보유·이용 기간</th><td><span className="placeholder">[대표 확인 필요: 실제 운영 기간 확정]</span>. 관계 법령에 따라 보존할 필요가 있는 경우 해당 법령에서 정한 기간 동안 보관합니다.</td></tr>
-      </tbody></table></section>
-
-      <section className="legal-section"><h2>2. 개인정보 수집·이용 동의 안내</h2><p>신청자는 개인정보 수집·이용 동의를 거부할 권리가 있습니다. 다만 필수 항목 수집에 동의하지 않을 경우 지역 확인, 전화 상담 및 견적 안내가 제한될 수 있습니다.</p></section>
-
-      <section className="legal-section"><h2>3. 개인정보의 제3자 제공</h2><p>현재 제3자 제공 대상이 확정되지 않아 제3자 제공 동의를 활성화하지 않았습니다. 상담 DB를 지역 기사 또는 별도 업체에 전달한다면 아래 내용을 확정하고 수집·이용 동의와 구분된 별도 동의를 받아야 합니다.</p><table><tbody>
-        <tr><th>제공받는 자</th><td><span className="placeholder">[업체·기사별 정확한 명칭 확인 필요]</span></td></tr>
-        <tr><th>제공 목적</th><td>작업 가능 여부 확인, 일정 조율, 견적 및 현장 서비스 제공</td></tr>
-        <tr><th>제공 항목</th><td><span className="placeholder">[실제 전달 항목 확인 필요]</span></td></tr>
-        <tr><th>보유 기간</th><td><span className="placeholder">[제공받는 자의 실제 보유기간 확인 필요]</span></td></tr>
-        <tr><th>거부 시 불이익</th><td><span className="placeholder">[직접 상담 가능 여부에 따라 확정]</span></td></tr>
-      </tbody></table></section>
-
-      <section className="legal-section"><h2>4. 개인정보 처리업무의 위탁</h2><p>회사는 원활한 서비스 제공을 위해 개인정보 처리업무를 위탁할 수 있습니다.</p><table><tbody><tr><th>수탁자</th><td><span className="placeholder">[DB·호스팅·문자·상담 솔루션 확정 후 입력]</span></td></tr><tr><th>위탁업무</th><td><span className="placeholder">[저장, 호스팅, 알림 발송 등 실제 업무 입력]</span></td></tr></tbody></table></section>
-      <section className="legal-section"><h2>5. 개인정보의 파기</h2><p>보유기간이 경과하거나 처리 목적이 달성된 개인정보는 지체 없이 파기합니다. 전자적 파일은 복구할 수 없는 방법으로 삭제하고, 종이 문서는 분쇄하거나 소각합니다.</p></section>
-      <section className="legal-section"><h2>6. 정보주체의 권리와 행사방법</h2><p>정보주체는 자신의 개인정보에 대해 열람, 정정·삭제, 처리정지 및 동의 철회를 요구할 수 있습니다. 아래 개인정보 보호책임자에게 연락하면 본인 확인 후 필요한 조치를 진행합니다.</p></section>
-      <section className="legal-section"><h2>7. 안전성 확보 조치</h2><p>회사는 개인정보 접근권한 관리, 전송 및 저장 시 보호조치, 접속기록 보관, 악성프로그램 방지 등 필요한 기술적·관리적 조치를 적용합니다. <span className="placeholder">[실제 DB 구성 후 구현 내용과 일치하는지 확인 필요]</span></p></section>
-      <section className="legal-section"><h2>8. 개인정보 보호책임자</h2><table><tbody><tr><th>책임자</th><td>김대곤 <span className="placeholder">[최종 지정 확인 필요]</span></td></tr><tr><th>전화</th><td><a href="tel:01091832200">010-9183-2200</a></td></tr><tr><th>이메일</th><td><span className="placeholder">[대표 확인 필요]</span></td></tr></tbody></table></section>
-      <section className="legal-section"><h2>9. 방침의 변경</h2><p>이 방침은 <span className="placeholder">[시행일 확인 필요]</span>부터 적용됩니다. 내용이 변경되면 홈페이지를 통해 공지합니다.</p></section>
-      <div className="legal-actions"><a href="/#estimate">견적 신청으로 돌아가기</a><a className="secondary" href="/terms">서비스 이용안내 보기</a></div>
-    </article>
-  </main>;
-}
+export default function PrivacyPage(){return <main className="legal-page"><header className="legal-header"><a className="brand" href="/"><i>에어컨·냉난방기</i><span>이전설치·철거·중고</span></a><a href="/">홈으로 돌아가기</a></header><article className="legal-content"><span className="legal-badge">상담 정보 처리 안내</span><h1>개인정보처리방침</h1><p className="legal-intro">어떤 정보를 받고, 얼마나 보관하며, 어떻게 문의할 수 있는지 안내합니다.</p><section className="legal-section"><h2>1. 개인정보처리자와 처리 목적</h2><p>에어컨설치.에어컨이전설치.에어컨중고판매(대표 김대곤)는 에어컨·냉난방기 설치·이전설치·철거 및 중고 매입·구매 상담을 위해 개인정보를 처리합니다. 지역과 제품·현장 조건을 확인하고, 작업 가능 여부와 일정·견적을 안내하며 상담 이력을 관리합니다.</p></section>
+<section className="legal-section"><h2>2. 처리하는 개인정보</h2><table><tbody><tr><th>필수 입력</th><td>지역, 문의 유형, 제품 종류, 연락처</td></tr><tr><th>접수·상담 기록</th><td>접수 번호와 시각, 수집·이용 동의 시각 및 문서 버전, 상담 상태, 상담 종료일과 삭제 예정일</td></tr><tr><th>유입 정보</th><td>신청 페이지 주소, 유입 사이트 주소, 광고 유입 식별값(UTM 소스·매체·캠페인·콘텐츠·키워드). 해당 정보가 있는 경우 저장합니다.</td></tr></tbody></table><p>웹사이트와 연결된 호스팅 서비스는 서비스 제공 및 보안을 위한 접속 정보를 처리할 수 있습니다. 고객 상담 DB에는 IP 주소나 브라우저·기기 정보를 별도 항목으로 저장하지 않습니다.</p></section>
+<section className="legal-section"><h2>3. 보유기간과 파기</h2><p><strong>미계약 상담 정보는 상담 종료 후 3개월 동안 보관한 뒤 삭제합니다.</strong> 상담 종료는 추가 상담이나 작업 계약을 진행하지 않기로 확인하고 접수를 종료한 때를 말합니다. 이 기간은 문의 이력 확인을 위한 운영 기준입니다.</p><p>담당자는 종료일과 삭제 예정일을 관리하며, 보유기간이 지난 미계약 상담 기록을 확인하여 파기합니다. 전자 파일은 복구가 어렵도록 안전한 방법으로 삭제하고, 종이 출력물은 분쇄 또는 소각합니다. 별도로 내려받은 상담 자료도 함께 관리합니다.</p><p>실제 계약·거래에 관한 기록은 해당 거래에 적용되는 법령상 보존 의무가 있는 경우 필요한 범위에서 구분하여 보관하며, 보존 의무가 종료되면 파기합니다.</p></section>
+<section className="legal-section"><h2>4. 동의와 거부 권리</h2><p>상담 신청자는 수집·이용 목적, 항목과 보유기간을 확인한 후 동의할 수 있습니다. 동의를 거부할 권리가 있으며, 필수 정보 수집에 동의하지 않으면 온라인 상담 신청을 이용할 수 없습니다. 상담 신청에 광고성 정보 수신 동의를 포함하지 않습니다.</p></section>
+<section className="legal-section"><h2>5. 상담 담당 및 외부 서비스</h2><p>김대곤 대표가 문의를 직접 확인하여 상담합니다. 상담 목적을 벗어나 개인정보를 이용하거나 제공하지 않으며, 별도 사업자에게 제공할 필요가 있는 경우 적용 법령에 따른 근거와 절차를 확인합니다.</p><table><tbody><tr><th>GitHub Pages</th><td>고객용 웹페이지 호스팅</td></tr><tr><th>OpenAI Sites</th><td>문의 접수 API 운영과 호스팅</td></tr><tr><th>Cloudflare D1</th><td>문의 정보 저장 및 관리자 조회 처리</td></tr></tbody></table><p>외부 서비스의 처리위탁 및 국외 처리 세부 사항은 운영 확인 중입니다. 확인된 사항은 이 방침에 추가 안내합니다. 자세한 처리 관련 문의는 아래 연락처로 요청할 수 있습니다.</p></section>
+<section className="legal-section"><h2>6. 권리 행사와 연락처</h2><p>개인정보 열람, 정정·삭제, 처리정지와 동의 철회를 요청할 수 있습니다. 김대곤 대표에게 전화로 요청하면 본인 확인 후 관계 법령에 따라 처리합니다. 법령에 따라 요청이 제한되는 경우 그 사유를 안내합니다.</p><p>개인정보 보호책임자: 김대곤<br />연락처: <a href="tel:01091832200">010-9183-2200</a><br />주소: 대전광역시 서구 도산로 209-1, 1층(변동)</p></section>
+<section className="legal-section"><h2>7. 안전성 확보 조치</h2><p>관리자 인증으로 상담 정보 조회 및 상태 변경 접근을 제한하고, HTTPS를 통해 개인정보를 전송합니다. 업무상 필요한 범위에서 접근권한을 관리하고 보유기간과 삭제 대상을 확인합니다.</p></section>
+<section className="legal-section"><h2>8. 시행 및 변경</h2><p>시행일: 2026년 9월 13일. 방침이 변경되면 이 페이지를 통해 변경 내용과 시행일을 안내합니다.</p></section><div className="legal-actions"><a href="/#estimate">상담 신청으로 돌아가기</a><a className="secondary" href="/terms">서비스 이용안내</a></div></article></main>}

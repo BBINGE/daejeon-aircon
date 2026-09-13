@@ -15,6 +15,13 @@
       "when": 1786298845769,
       "tag": "0001_polite_zombie",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1789292239030,
+      "tag": "0002_cooing_mystique",
+      "breakpoints": true
     }
   ]
 }

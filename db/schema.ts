@@ -15,8 +15,13 @@ export const leads = sqliteTable("leads", {
   utmContent: text("utm_content"),
   utmTerm: text("utm_term"),
   status: text("status").notNull().default("new"),
+  consentVersion: text("consent_version"),
+  consentAt: text("consent_at"),
+  closedAt: text("closed_at"),
+  deleteAfter: text("delete_after"),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 }, table => [
   index("idx_leads_created_at").on(table.createdAt),
   index("idx_leads_status_created_at").on(table.status, table.createdAt),
+  index("idx_leads_delete_after").on(table.deleteAfter),
 ]);

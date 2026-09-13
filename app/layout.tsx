@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "에어컨·냉난방기 이전설치·철거·중고 매입·판매 | 김대곤",
+  title: "냉난방기설치매입 | 에어컨 이전설치·철거 · 김대곤",
   description: "대전·세종·충청권 중심. 집·사무실·식당·카페 에어컨·냉난방기 이전설치, 철거, 중고 매입·구매 상담. 김대곤 대표 직접 상담 010-9183-2200.",
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],

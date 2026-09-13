@@ -8,12 +8,12 @@ const SMS = "sms:01091832200";
 const areas = ["대전", "세종·조치원", "청주", "천안", "공주", "계룡", "논산", "부여", "금산", "옥천", "전주", "익산", "무주"];
 
 const workPhotos = [
-  ["/images/install.webp", "실내기 설치", "벽걸이 설치"],
+  ["/images/install.webp", "난간 옆 실외기 배관 작업 현장", "실외기 배관 작업", "난간 옆 실외기에 장비를 연결해 작업하는 모습입니다."],
   ["/images/service.webp", "제품 점검", "현장 점검"],
   ["/images/roof.webp", "옥상 작업", "실외기 설치"],
   ["/images/work.webp", "실외기 작업", "배관·실외기"],
-  ["/images/removal-load.jpg", "철거한 실내기와 실외기를 차량에 적재한 모습", "철거 제품 반출"],
-  ["/images/removal-units.jpg", "철거 후 한 공간에 모아둔 실내기와 실외기", "철거 후 제품 정리"],
+  ["/images/removal-load.jpg", "철거한 실내기와 실외기를 차량에 적재한 모습", "철거 제품 반출", "철거한 실내기와 실외기를 차량에 적재한 모습입니다."],
+  ["/images/removal-units.jpg", "철거 후 한 공간에 모아둔 실내기와 실외기", "철거 후 제품 정리", "여러 대의 실내기와 실외기를 한 공간에 모아둔 모습입니다."],
   ["/images/unit.webp", "제품 설치", "설치 완료"],
 ];
 
@@ -107,7 +107,7 @@ export default function Home() {
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
-      <header className="topbar"><a className="brand" href="#top"><i>에어컨·냉난방기</i><span>이전설치·철거·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a></nav><a className="top-cta" href={PHONE}>대표님께 전화하기</a></header>
+      <header className="topbar"><a className="brand" href="#top"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a></nav><a className="top-cta" href={PHONE}>대표님께 전화하기</a></header>
       <aside className="quick-rail" aria-label="빠른 이동 메뉴">
         <a className="quick-rail-cta" href={PHONE}><b>전화</b><span>대표님께 문의</span></a>
         <a href="#situations"><i>01</i><span>신청 상황</span></a>
@@ -152,7 +152,7 @@ export default function Home() {
         </article>
         <article className="service-story story-blue">
           <figure><img src="/images/service.webp" alt="실내기를 준비하고 작업하는 실제 현장" width="1800" height="1013" loading="lazy" /><figcaption>실제 실내기 작업 현장</figcaption><ServiceFlow steps={[["home","공간·예산"],["air","제품 확인"],["chat","설치 상담"]]}/></figure>
-          <div className="story-copy"><p className="story-number">03 <span>중고 구매 · 설치</span></p><h3>중고로 구매하고<br />설치까지 맡기고 싶어요.</h3><p>공간과 예산에 맞는 제품을 함께 확인해요.<br />가정은 물론 새로 여는 사무실·매장도 상담합니다.</p><ul><li>실제 재고와 냉난방 기능·용량 확인</li><li>제품 가격과 설치·추가 작업비 구분</li><li>구매 전 보증 조건 확인</li></ul><a href="#estimate">구매·설치 물어보기 →</a></div>
+          <div className="story-copy"><p className="story-number">03 <span>중고 구매 · 설치</span></p><h3>중고로 구매하고<br />설치까지 맡기고 싶어요.</h3><p>공간과 예산에 맞는 제품을 함께 확인해요.<br />가정은 물론 새로 여는 사무실·매장도 상담합니다.</p><ul><li>실제 재고와 냉난방 기능·용량 확인</li><li>제품 가격과 설치·추가 작업비 구분</li><li>매장에서 제품·보증 조건 확인 후 구매</li></ul><a href="#estimate">구매·설치 물어보기 →</a></div>
         </article>
       </section>
 
@@ -161,7 +161,7 @@ export default function Home() {
         <div className="work-gallery" aria-label="실제 에어컨 작업 사진 슬라이드">
           <div className="gallery-head"><span><i /> 실제 현장 사진 7장</span><small>마우스를 올리면 멈춥니다</small></div>
           <div className="gallery-viewport">
-            <div className="gallery-track">{[...workPhotos, ...workPhotos].map(([src, alt, label], index) => <figure key={`${src}-${index}`} aria-hidden={index >= workPhotos.length}><img src={src} loading="lazy" decoding="async" width={1920} height={2560} alt={index < workPhotos.length ? alt : ""} /><figcaption><span>{String((index % workPhotos.length) + 1).padStart(2,"0")}</span>{label}</figcaption></figure>)}</div>
+            <div className="gallery-track">{[...workPhotos, ...workPhotos].map(([src, alt, label, detail], index) => <figure key={`${src}-${index}`} aria-hidden={index >= workPhotos.length}><img src={src} loading="lazy" decoding="async" width={1920} height={2560} alt={index < workPhotos.length ? alt : ""} /><figcaption><span>{String((index % workPhotos.length) + 1).padStart(2,"0")}</span><div>{label}{detail && <p>{detail}</p>}</div></figcaption></figure>)}</div>
           </div>
           <div className="gallery-hint"><span>←</span> 옆으로 밀어 더 보기 <span>→</span></div>
         </div>
@@ -183,7 +183,7 @@ export default function Home() {
       <section className="faq section" id="faq"><div className="section-title"><p>FAQ</p><h2>망설이는 이유,<br /><em>여기서 먼저 풀어보세요.</em></h2></div><div>{[["사무실·식당·카페도 이전설치할 수 있나요?","네. 가정과 사업장 모두 상담합니다. 출발·도착 지역, 제품 종류와 대수, 희망일을 알려주시면 현장 조건과 작업 가능 여부를 확인합니다."],["철거만 하거나 중고 매입도 문의할 수 있나요?","철거만 필요한 경우와 매입을 원하는 경우를 구분해 상담합니다. 매입 여부와 금액은 제품 상태에 따라 달라지며 철거·수거 비용도 함께 확인합니다."],["냉난방기 중고 구매와 설치를 함께 문의할 수 있나요?","네. 사용할 공간과 예산을 알려주세요. 실제 재고, 제품의 난방 기능, 용량과 설치 조건을 확인합니다."],["중고 제품 가격에 설치비가 포함되나요?","제품과 현장에 따라 달라집니다. 제품 가격, 설치비와 추가 작업비의 포함 여부 및 보증 조건을 구매 전에 확인해주세요."],["통화가 어렵거나 제품 사진을 보내고 싶어요.","010-9183-2200으로 지역과 필요한 작업을 문자로 남겨주세요. 제품 사진도 같은 번호로 보내시면 됩니다. 문의만으로 예약이 확정되지는 않으며, 작업 범위와 비용·일정을 상담한 뒤 결정합니다."]].map(([q,a])=><details key={q}><summary>{q}<i>+</i></summary><p>{a}</p></details>)}</div></section>
 
       <section className="final"><div><p>집·사무실·식당·카페의 에어컨·냉난방기</p><h2>옮길 때도, 정리할 때도.<br /><em>필요한 작업부터 물어보세요.</em></h2><span>문의만으로 예약이나 결제가 확정되지 않습니다. 대표가 확인 후 안내합니다.</span></div><ContactCard compact /></section>
-      <footer><div className="footer-top"><div className="brand"><i>에어컨·냉난방기</i><span>이전설치·철거·중고</span></div><nav><a href="/terms">서비스 이용안내</a><a href="/privacy"><strong>개인정보처리방침</strong></a></nav></div><div className="business-info"><p>상호 에어컨설치.에어컨이전설치.에어컨중고판매<br />대표자 김대곤　 사업자등록번호 801-39-00586</p><p>사업장 주소 대전광역시 서구 도산로 209-1, 1층(변동)　 대표전화 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p><p>개인정보 보호책임자 김대곤　 연락처 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p></div><p className="copyright">© 2026 에어컨설치.에어컨이전설치.에어컨중고판매. All rights reserved.</p></footer>
+      <footer><div className="footer-top"><div className="brand"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></div><nav><a href="/terms">서비스 이용안내</a><a href="/privacy"><strong>개인정보처리방침</strong></a></nav></div><div className="business-info"><p>상호 에어컨설치.에어컨이전설치.에어컨중고판매<br />대표자 김대곤　 사업자등록번호 801-39-00586</p><p>사업장 주소 대전광역시 서구 도산로 209-1, 1층(변동)　 대표전화 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p><p>개인정보 보호책임자 김대곤　 연락처 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p></div><p className="copyright">© 2026 에어컨설치.에어컨이전설치.에어컨중고판매. All rights reserved.</p></footer>
       <nav className="sticky" aria-label="전화·문자 문의"><a className="sticky-call" href={PHONE}><span>대표님께 전화</span><small>010-9183-2200</small><b>☎</b></a><a className="sticky-sms" href={SMS}><span>문자 문의</span><small>사진도 같은 번호로</small><b>↗</b></a></nav>
     </main>
   );

@@ -5,13 +5,6 @@ import { useEffect } from "react";
 const PHONE = "tel:01091832200";
 const SMS = "sms:01091832200";
 
-const services = [
-  ["이전설치", "출발·도착 지역과 철거·설치 희망일을 알려주세요. 가정과 사업장 모두 상담합니다."],
-  ["철거", "이사·매장 정리로 남은 제품, 철거만 필요한 경우에도 작업 조건을 확인합니다."],
-  ["중고 매입", "모델·연식·작동 상태에 따라 매입 여부를 확인합니다. 철거·수거 조건도 함께 문의하세요."],
-  ["중고 구매·설치", "냉난방 기능과 공간·예산에 맞는 제품을 문의하세요. 실제 재고와 설치비를 확인합니다."],
-];
-
 const areas = ["대전", "세종·조치원", "청주", "천안", "공주", "계룡", "논산", "부여", "금산", "옥천", "전주", "익산", "무주"];
 
 const workPhotos = [
@@ -100,55 +93,41 @@ export default function Home() {
         <a className="quick-rail-top" href="#top" aria-label="맨 위로 이동">↑ TOP</a>
       </aside>
 
-      <section className="hero" id="top">
-        <div className="hero-image" role="img" aria-label="에어컨 현장 작업 사진" />
+      <section className="hero story-hero" id="top">
+        <div className="hero-image" role="img" aria-label="에어컨 실제 작업 현장" />
         <div className="hero-shade" />
         <div className="hero-inner">
-          <div className="hero-copy">
-            <p className="eyebrow"><span /> 대전·세종·충청권 중심 · 가정부터 사업장까지</p>
-            <h1><span>에어컨·냉난방기</span><em><span>옮길 때도,</span><span>새로 들일 때도.</span></em></h1>
-            <p className="hero-sub">집 이사부터 사무실·식당·카페 이전까지.<br />이전설치·철거·중고 매입과 구매를 상담하세요.</p>
-            <div className="intent-links">{[["이전설치","옮기고 싶어요"],["중고 매입 문의","철거·판매하고 싶어요"],["중고 구매","구매하고 싶어요"]].map(([value,label]) => <a key={value} href="#estimate">{label}<b>↗</b></a>)}</div>
-            <div className="trust-row"><span>✓ 실제 현장 사진</span><span>✓ 김대곤 대표 직접 상담</span><span>✓ 이전·매입·구매 상담</span></div>
-            <div className="hero-guide"><strong>옮길지, 팔지 아직 정하지 못하셨나요?</strong><span>기존 제품과 새 공간에 필요한 작업부터 함께 확인합니다.</span></div>
-          </div>
-          <ContactCard />
+          <p className="eyebrow">대전·세종·충청권 중심 · 가정부터 사업장까지</p>
+          <h1>에어컨·냉난방기,<br /><em>옮기고 설치하고<br className="mobile-break" /> 정리할 때.</em></h1>
+          <p className="hero-sub">이사하는 집에도, 새로 여는 매장에도.<br />필요한 제품과 작업을 함께 상담합니다.</p>
+          <div className="hero-services" aria-label="상담 서비스"><span>이전설치</span><span>철거</span><span>중고 매입</span><span>중고 구매·설치</span></div>
+          <a className="hero-inquiry" href="#estimate">무엇이든 물어보세요 <span aria-hidden="true">↓</span></a>
+          <p className="hero-signature">김대곤 대표 직접 상담 · 실제 현장 사진</p>
         </div>
-        <a className="scroll-cue" href="#situations"><span>SCROLL</span><i><b /></i><small>아래로 내려 더 보기</small></a>
       </section>
 
-      <section className="quick-strip"><strong>에어컨·냉난방기, 필요한 작업을 상담하세요.</strong><div>{["이전설치", "철거", "중고 매입", "중고 판매", "신규 설치"].map(x => <span key={x}>{x}</span>)}</div></section>
-
-      <section className="conversion-banner" aria-label="빠른 상담 안내">
-        <div><p>사무실·식당·카페의 겨울 준비</p><h2>새 공간에 필요한 냉난방기,<br />구매와 설치를 함께 상담하세요.</h2><span>공간과 예산에 맞는 제품, 난방 기능과 설치 조건을 확인합니다.</span></div>
-        <div className="conversion-actions"><a href={SMS}><small>통화가 어려우시면</small><strong>문자로 문의하기</strong><b>↗</b></a><a className="conversion-call" href="tel:01091832200"><small>바로 연결하기</small><strong>010-9183-2200</strong><b>☎</b></a></div>
+      <section className="ask-section" id="estimate">
+        <p className="section-kicker">내 상황부터 편하게</p>
+        <h2>무엇이든 물어보세요!</h2>
+        <p className="ask-intro">내 제품도 가능한지, 우리 지역까지 오는지, 비용은 얼마나 들지.<br />김대곤 대표에게 전화나 문자로 편하게 물어보세요.</p>
+        <div className="ask-actions"><a href={PHONE}>전화로 물어보기 <span>010-9183-2200</span></a><a href={SMS}>문자로 물어보기 <span>제품 사진도 같은 번호로</span></a></div>
+        <p className="ask-note">문의만으로 예약이 확정되지 않아요. 작업과 비용·일정을 상담한 뒤 결정하세요.</p>
       </section>
 
-      <section className="situations section" id="situations">
-        <div className="section-title situations-title"><p>WHEN TO ASK</p><h2>옮기는 공간도, 필요한 일도.<br /><em>내 상황에 맞춰 문의하세요.</em></h2><span>가정의 이사, 사업장의 이전과 개업, 사용하던 제품의 정리까지 상담합니다.</span></div>
-        <div className="situation-grid">
-          <article>
-            <div className="situation-icon">01</div><p className="situation-label">이전설치 · 신규설치</p><h3>집·사무실·매장을<br />옮길 예정이라면</h3>
-            <ul><li>이사하면서 기존 에어컨을 옮겨야 할 때</li><li>철거일과 설치일을 조율해야 할 때</li><li>사무실·식당·카페의 제품을 옮길 때</li><li>철거와 재설치를 한 번에 맡기고 싶을 때</li></ul>
-            <a href="#estimate">이전설치 상담하기 <b>→</b></a>
-          </article>
-          <article>
-            <div className="situation-icon">02</div><p className="situation-label">철거 · 중고 매입</p><h3>남겨둘 제품,<br />정리가 필요하다면</h3>
-            <ul><li>이사하며 기존 제품을 정리하고 싶을 때</li><li>사무실·매장 정리로 철거가 필요할 때</li><li>여러 대의 제품을 함께 문의하고 싶을 때</li><li>사용하던 제품의 매입 가능 여부가 궁금할 때</li></ul>
-            <a href="#estimate">철거·매입 문의하기 <b>→</b></a>
-          </article>
-          <article>
-            <div className="situation-icon">03</div><p className="situation-label">중고 구매</p><h3>새 제품 가격 앞에서<br />망설이고 있다면</h3>
-            <ul><li>예산에 맞는 중고 제품을 찾고 있을 때</li><li>사무실·식당·카페에 냉난방기가 필요할 때</li><li>제품 구매와 설치를 함께 문의하고 싶을 때</li><li>난방 기능과 공간에 맞는 용량이 궁금할 때</li></ul>
-            <a href="#estimate">예산에 맞춰 문의하기 <b>→</b></a>
-          </article>
-        </div>
-        <div className="audience-banner"><div><span>가정의 이사부터 사업장 이전까지</span><strong>옮길 제품과 새로 필요한 제품을 함께</strong><p>가정집은 물론 기업·사무실·소상공인 매장도 가능합니다. 공간과 설치 환경을 확인해 제품과 작업 가능 여부를 안내드립니다.</p></div><div className="audience-types">{["아파트·주택", "원룸·오피스텔", "기업·사무실", "카페·음식점", "미용실·학원", "일반 매장"].map(x=><span key={x}>✓ {x}</span>)}</div></div>
-      </section>
-
-      <section className="section service-section" id="service">
-        <div className="section-title"><p>WHAT WE DO</p><h2>이전설치부터 철거·매입,<br /><em>중고 구매와 설치까지.</em></h2><span>에어컨과 냉난방기의 제품 상태·현장 조건을 확인해 가능한 작업을 안내합니다.</span></div>
-        <div className="service-grid">{services.map(([title, desc], i) => <article key={title}><b>0{i + 1}</b><h3>{title}</h3><p>{desc}</p><a href="#estimate">가능 여부 확인 →</a></article>)}</div>
+      <section className="service-stories" id="situations">
+        <div className="stories-heading" id="service"><p className="section-kicker">이런 일을 도와드립니다</p><h2>지금 필요한 일,<br /><em>여기서 함께 확인하세요.</em></h2></div>
+        <article className="service-story">
+          <figure><img src="/images/unit.webp" alt="실외기와 배관을 작업하는 실제 현장" width="1350" height="1800" loading="lazy" /><figcaption>실제 실외기 작업 현장</figcaption></figure>
+          <div className="story-copy"><p className="story-number">01 <span>이전설치</span></p><h3>이사하는데,<br />에어컨도 옮겨야 해요.</h3><p>기존 제품 철거부터 새 공간의 설치까지.<br />집·사무실·식당·카페의 이전을 상담합니다.</p><ul><li>출발·도착 지역과 희망일 확인</li><li>철거일과 설치일 조율</li><li>제품 종류·대수와 현장 조건 확인</li></ul><a href="#estimate">이전설치 물어보기 →</a></div>
+        </article>
+        <article className="service-story story-dark">
+          <figure><img src="/images/removal-load.jpg" alt="철거한 에어컨과 실외기를 차량에 적재한 현장" width="1920" height="2560" loading="lazy" /><figcaption>철거·반출 현장 사진이며 판매 재고가 아닙니다.</figcaption></figure>
+          <div className="story-copy"><p className="story-number">02 <span>철거 · 중고 매입</span></p><h3>안 쓰는 냉난방기,<br />팔 수 있을까요?</h3><p>이사나 매장 정리로 남은 제품.<br />제품 상태와 철거 조건을 함께 확인합니다.</p><ul><li>모델·연식·작동 상태에 따른 매입 가능 여부</li><li>철거·수거 비용과 작업 조건 확인</li><li>철거만 필요하거나 여러 대여도 상담</li></ul><a href="#estimate">철거·매입 물어보기 →</a></div>
+        </article>
+        <article className="service-story story-blue">
+          <figure><img src="/images/service.webp" alt="실내기를 준비하고 작업하는 실제 현장" width="1800" height="1013" loading="lazy" /><figcaption>실제 실내기 작업 현장</figcaption></figure>
+          <div className="story-copy"><p className="story-number">03 <span>중고 구매 · 설치</span></p><h3>중고로 구매하고<br />설치까지 맡기고 싶어요.</h3><p>공간과 예산에 맞는 제품을 함께 확인해요.<br />가정은 물론 새로 여는 사무실·매장도 상담합니다.</p><ul><li>실제 재고와 냉난방 기능·용량 확인</li><li>제품 가격과 설치·추가 작업비 구분</li><li>구매 전 보증 조건 확인</li></ul><a href="#estimate">구매·설치 물어보기 →</a></div>
+        </article>
       </section>
 
       <section className="work-section" id="work">

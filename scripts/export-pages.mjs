@@ -7,7 +7,7 @@ const root=path.resolve('dist/server');
 const modules=readdirSync(root,{recursive:true}).filter(x=>String(x).endsWith('.js')).sort((a,b)=>a==='index.js'?-1:b==='index.js'?1:0).map(x=>({type:'ESModule',path:path.resolve(root,String(x))}));
 const mf=new Miniflare({modules,modulesRoot:root,compatibilityDate:'2026-05-22',compatibilityFlags:['nodejs_compat']});
 const base='/daejeon-aircon';
-function rewrite(s){return s.replaceAll('/_next/',base+'/_next/').replaceAll('/images/',base+'/images/').replaceAll('/favicon.svg',base+'/favicon.svg').replaceAll('href="/"','href="'+base+'/"').replaceAll('href="/#','href="'+base+'/#').replaceAll('href:"/"','href:"'+base+'/"').replaceAll('href:"/#','href:"'+base+'/#').replaceAll('"/privacy"','"'+base+'/privacy.html"').replaceAll('"/terms"','"'+base+'/terms.html"').replaceAll('\\"/privacy\\"','\\"'+base+'/privacy.html\\"').replaceAll('\\"/terms\\"','\\"'+base+'/terms.html\\"').replaceAll('\\"/\\"','\\"'+base+'/\\"').replaceAll('\\"/#','\\"'+base+'/#');}
+function rewrite(s){return s.replaceAll('/analytics.js',base+'/analytics.js').replaceAll('/_next/',base+'/_next/').replaceAll('/images/',base+'/images/').replaceAll('/favicon.svg',base+'/favicon.svg').replaceAll('href="/"','href="'+base+'/"').replaceAll('href="/#','href="'+base+'/#').replaceAll('href:"/"','href:"'+base+'/"').replaceAll('href:"/#','href:"'+base+'/#').replaceAll('"/privacy"','"'+base+'/privacy.html"').replaceAll('"/terms"','"'+base+'/terms.html"').replaceAll('\\"/privacy\\"','\\"'+base+'/privacy.html\\"').replaceAll('\\"/terms\\"','\\"'+base+'/terms.html\\"').replaceAll('\\"/\\"','\\"'+base+'/\\"').replaceAll('\\"/#','\\"'+base+'/#');}
 try{
  mkdirSync('docs',{recursive:true});
  cpSync('dist/client','docs',{recursive:true});

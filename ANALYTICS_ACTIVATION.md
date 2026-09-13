@@ -16,3 +16,14 @@
 - https://naver.github.io/conversion-tracking/pages/01_script_guide_wcstrans/
 - https://support.google.com/analytics/answer/6004245
 - https://support.google.com/analytics/answer/7667196?hl=ko
+
+## 2026-09-14 GA4 연결
+- 측정 ID: G-C7WX012ZK8 / 계정 407844515 / 속성 553970583 / 스트림 15769924581.
+- 사용자·이벤트 보관기간 모두 2개월, 새 활동에 따른 연장 끔을 관리 화면에서 저장.
+- 향상된 측정: 페이지 조회·스크롤만 유지. 검색·양식·이탈 클릭·동영상·파일 다운로드 끔.
+- public/analytics.js: 동의 전 태그 미로드. 분석 및 국외이전 동의 후에만 실행, 거절·철회 시 ga-disable 및 GA 쿠키 삭제. 선택은 브라우저에 180일 보관. 쿠키 60일, 갱신 끔.
+- phone_click / sms_click + contact_position 이벤트. 원본 쿼리·해시와 referrer 상세 경로는 제외. 캠페인 상세 분류는 아직 미설정. 개인 전화번호·상담내용 전송 없음.
+- Signals 및 사용자 제공 데이터는 관리 화면에서 비활성 확인. 코드에서도 Signals·광고 개인 최적화 차단.
+- 네이버 태그는 미설치. 기존 '두 도구 도입 예정' 정책을 GA4 동의 기반 운영 / 네이버 미설치로 교체.
+- 자동 테스트: 동의/거절/철회/중복 로드/연락 이벤트/URL 정제/관리자 제외. 실시간 수신 증거는 배포 후 확인.
+- 이전 본문의 GA4 미설치 설명은 이 기록으로 대체.

@@ -1,100 +1,49 @@
-# vinext-starter
+# 냉난방기설치매입 — 김대곤 대표 상담 사이트
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+- **공식 주소·광고 연결 URL:** https://naengnanmarket.com/
+- 기본 제공 주소: https://kimdaegon-aircon.bbinge95.chatgpt.site/
+- GitHub: https://github.com/BBINGE/daejeon-aircon (main)
+- 기존 정적 배포 주소: https://bbinge.github.io/daejeon-aircon/
 
-## Prerequisites
+공식 도메인은 Sites에 연결되어 있다. chatgpt.site는 기본 호스팅 주소이며 사이트 이름에 붙는 표시가 아니다. 광고와 공유에는 공식 주소를 사용한다.
 
-- Node.js `>=22.13.0`
+## 회사 PC에서 이어가기
 
-## Quick Start
+Git이 설치된 터미널에서 새 폴더로 가져온다.
 
-```bash
-npm install
+```powershell
+git clone https://github.com/BBINGE/daejeon-aircon.git
+cd daejeon-aircon
+npm ci
 npm run dev
+```
+
+Node.js 22.13.0 이상 필요. 이미 체크아웃이 있으면 먼저 git status를 확인한다. 변경이 없을 때만 git pull --ff-only origin main을 실행한다. 변경이 있으면 덮어쓰지 말고 비교한다. 로컬 주소는 개발 서버가 출력하는 URL을 사용한다.
+
+## 먼저 읽을 문서
+
+1. [HANDOFF.md](HANDOFF.md): 현재 완료 범위, 남은 일, 배포 상태
+2. [PROJECT_BRIEF.md](PROJECT_BRIEF.md): 서비스·카피·사용자 의도
+3. [OPERATIONS.md](OPERATIONS.md): 상담 운영과 배포 절차
+4. [PRELAUNCH_CHECKLIST.md](PRELAUNCH_CHECKLIST.md): 광고 전 확인 상태
+5. [ANALYTICS_ACTIVATION.md](ANALYTICS_ACTIVATION.md): 분석 설정과 한계
+
+[HISTORY_LEGACY.md](HISTORY_LEGACY.md)는 과거 계획 원문이다. 현재 지침으로 사용하지 않는다.
+
+## 소스와 검사
+
+- app/page.tsx, app/globals.css: 고객 화면
+- app/layout.tsx: 사이트 제목
+- app/privacy/page.tsx, app/terms/page.tsx: 공개 안내
+- public/analytics.js: 동의 기반 GA4
+- public/images/: 기존 현장 사진
+- docs/: GitHub Pages 정적 배포본; 직접 수정 대신 export
+- .openai/hosting.json: 기존 Sites 프로젝트 식별자
+
+```powershell
 npm run build
+node --test tests/rendered-html.test.mjs tests/analytics.test.mjs
+npm run export:pages
 ```
 
-This starter does not use `wrangler.jsonc`.
-
-## Included Shape
-
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
-
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Optional Dispatch-Owned ChatGPT Sign-In
-
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
-
-## Useful Commands
-
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+GitHub push만으로 Sites 운영 사이트가 갱신되지는 않는다. 게시 절차는 OPERATIONS.md 참고. 비밀번호·토큰·고객 자료는 저장소에 넣지 않는다.

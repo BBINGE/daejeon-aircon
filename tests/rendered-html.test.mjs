@@ -9,15 +9,10 @@ try{
  for(const f of readdirSync('drizzle').filter(x=>x.endsWith('.sql')).sort())for(const sql of readFileSync('drizzle/'+f,'utf8').split('--> statement-breakpoint').map(x=>x.trim()).filter(Boolean))await db.prepare(sql).run();
  const call=async(method,body,key='')=>{const r=await mf.dispatchFetch('http://localhost/api/leads',{method,headers:{'Content-Type':'application/json',...(key?{'X-Admin-Key':key}:{})},...(body?{body:JSON.stringify(body)}:{})});return [r.status,await r.json()];};
  assert.equal((await call('GET'))[0],401);
- const data={region:'대전',inquiryType:'중고 구매',airconType:'냉난방기',phone:'010-0000-0000',consent:true,consentVersion:'2026-09-13',sourceUrl:'https://example.com/?phone=secret',referrer:'https://example.org/?secret=yes'};
- assert.equal((await call('POST',{...data,consent:false}))[0],400);
- const [status,created]=await call('POST',data);assert.equal(status,201,JSON.stringify(created));
- assert.equal((await call('POST',data))[1].duplicate,true);
- const row=(await call('GET',null,'local-test-key-only'))[1].leads[0];assert.equal(row.consentVersion,'2026-09-13');assert.ok(row.consentAt);assert.equal(row.sourceUrl,'https://example.com/');assert.equal(row.referrer,'https://example.org');
- assert.equal((await call('PATCH',{id:created.id,status:'closed'},'local-test-key-only'))[0],200);
- const closed=(await call('GET',null,'local-test-key-only'))[1].leads[0];assert.ok(closed.closedAt);assert.ok(closed.deleteAfter);
- await db.prepare("UPDATE leads SET delete_after = '2020-01-01 00:00:00' WHERE id = ?").bind(created.id).run();
+ assert.equal((await call('POST',{phone:'010-0000-0000',consent:true}))[0],410);
  assert.equal((await call('GET',null,'local-test-key-only'))[1].leads.length,0);
+ const home=await (await mf.dispatchFetch('http://localhost/')).text();
+ assert.ok(!home.includes('<form'));assert.ok(home.includes('href="sms:01091832200"'));assert.ok(home.includes('href="tel:01091832200"'));
  for(const url of ['/','/privacy','/terms']){const r=await mf.dispatchFetch('http://localhost'+url);assert.equal(r.status,200);const html=await r.text();assert.ok(html.includes('김대곤'));assert.ok(!html.includes('[대표 확인 필요]'));}
- console.log('PASS: local D1 migrations, consent, auth, duplicate prevention, new enquiry, URL minimization, closure and expiry purge, three pages. No production data used.');
+ console.log('PASS: closed intake returns 410 without saving, admin auth, phone/SMS links, no forms, policy pages.');
 }finally{await mf.dispose();}

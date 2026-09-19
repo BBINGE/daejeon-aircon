@@ -107,7 +107,7 @@ export default function Home() {
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
-      <header className="topbar"><a className="brand" href="#top"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a></nav><a className="top-cta" href={PHONE}>대표님께 전화하기</a></header>
+      <header className="topbar"><a className="brand" href="#top"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a></nav><a className="top-cta" href={PHONE} aria-label="김대곤 대표에게 전화하기 010-9183-2200"><span aria-hidden="true">☎</span>010-9183-2200</a></header>
       <aside className="quick-rail" aria-label="빠른 이동 메뉴">
         <a className="quick-rail-cta" href={PHONE}><b>전화</b><span>대표님께 문의</span></a>
         <a href="#situations"><i>01</i><span>신청 상황</span></a>
@@ -126,7 +126,7 @@ export default function Home() {
           <p className="eyebrow">대전·세종·충청권 중심 · 가정부터 사업장까지</p>
           <h1>에어컨·냉난방기,<br /><em>옮기고 설치하고<br className="mobile-break" /> 정리할 때.</em></h1>
           <p className="hero-sub">이사하는 집에도, 새로 여는 매장에도.<br />필요한 제품과 작업을 함께 상담합니다.</p>
-          <div className="hero-services" aria-label="상담 서비스"><span><ServiceIcon kind="truck"/>이전설치</span><span><ServiceIcon kind="tool"/>철거</span><span><ServiceIcon kind="coin"/>중고 매입</span><span><ServiceIcon kind="air"/>중고 구매·설치</span></div>
+          <div className="hero-services" aria-label="상담 서비스"><span><ServiceIcon kind="air"/>에어컨 설치</span><span><ServiceIcon kind="truck"/>이전설치</span><span><ServiceIcon kind="tool"/>철거</span><span><ServiceIcon kind="coin"/>중고 매입</span><span><ServiceIcon kind="air"/>중고 에어컨 판매</span></div>
           <a className="hero-inquiry" href="#estimate">무엇이든 물어보세요 <span aria-hidden="true">↓</span></a>
           <p className="hero-signature">김대곤 대표 직접 상담 · 실제 현장 사진</p>
         </div>
@@ -152,7 +152,7 @@ export default function Home() {
         </article>
         <article className="service-story story-blue">
           <figure><img src="/images/service.webp" alt="실내기를 준비하고 작업하는 실제 현장" width="1800" height="1013" loading="lazy" /><figcaption>실제 실내기 작업 현장</figcaption><ServiceFlow steps={[["home","공간·예산"],["air","제품 확인"],["chat","설치 상담"]]}/></figure>
-          <div className="story-copy"><p className="story-number">03 <span>중고 구매 · 설치</span></p><h3>중고로 구매하고<br />설치까지 맡기고 싶어요.</h3><p>공간과 예산에 맞는 제품을 함께 확인해요.<br />가정은 물론 새로 여는 사무실·매장도 상담합니다.</p><ul><li>실제 재고와 냉난방 기능·용량 확인</li><li>제품 가격과 설치·추가 작업비 구분</li><li>매장에서 제품·보증 조건 확인 후 구매</li></ul><a href="#estimate">구매·설치 물어보기 →</a></div>
+          <div className="story-copy"><p className="story-number">03 <span>중고 에어컨 판매 · 설치</span></p><h3>중고로 구매하고<br />설치까지 맡기고 싶어요.</h3><p>공간과 예산에 맞는 제품을 함께 확인해요.<br />가정은 물론 새로 여는 사무실·매장도 상담합니다.</p><ul><li>판매 가능한 제품의 기능·용량 확인</li><li>제품 가격과 설치·추가 작업비 구분</li><li>제품 상태·보증 조건을 상담 후 결정</li></ul><a href="#estimate">구매·설치 물어보기 →</a></div>
         </article>
       </section>
 

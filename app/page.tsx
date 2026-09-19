@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import DesktopLeadForm from "./components/DesktopLeadForm";
 
 const PHONE = "tel:01091832200";
 const SMS = "sms:01091832200";
@@ -50,6 +51,7 @@ function ContactCard({ compact = false }: { compact?: boolean }) {
     <p className="contact-intro">이전설치·철거·중고 냉난방기 매입과 구매를 상담합니다.</p>
     <a className="contact-phone" href={PHONE}><span>대표님께 전화하기</span><strong>010-9183-2200</strong></a>
     <a className="contact-sms" href={SMS}>문자로 먼저 문의하기 <b aria-hidden="true">↗</b></a>
+    <a className="contact-pc-form" href="#pc-inquiry">PC에서 전화 상담 신청하기 →</a>
     <p className="contact-help">통화가 어려우시면 지역과 필요한 작업을 문자로 남겨주세요. 제품 사진도 같은 번호로 보내시면 됩니다.</p>
     <p className="contact-fallback">버튼이 열리지 않으면 휴대폰에서 위 번호로 연락해주세요.</p>
   </div>;
@@ -107,7 +109,7 @@ export default function Home() {
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
-      <header className="topbar"><a className="brand" href="#top"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a></nav><a className="top-cta" href={PHONE} aria-label="김대곤 대표에게 전화하기 010-9183-2200"><span aria-hidden="true">☎</span>010-9183-2200</a></header>
+      <header className="topbar"><a className="brand" href="#top"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a><a href="#pc-inquiry">상담 신청</a></nav><a className="top-cta" href={PHONE} aria-label="김대곤 대표에게 전화하기 010-9183-2200"><span aria-hidden="true">☎</span>010-9183-2200</a></header>
       <aside className="quick-rail" aria-label="빠른 이동 메뉴">
         <a className="quick-rail-cta" href={PHONE}><b>전화</b><span>대표님께 문의</span></a>
         <a href="#situations"><i>01</i><span>신청 상황</span></a>
@@ -137,6 +139,7 @@ export default function Home() {
         <h2>무엇이든 물어보세요!</h2>
         <p className="ask-intro">내 제품도 가능한지, 우리 지역까지 오는지, 비용은 얼마나 들지.<br />김대곤 대표에게 전화나 문자로 편하게 물어보세요.</p>
         <div className="ask-actions"><a href={PHONE}>전화로 물어보기 <span>010-9183-2200</span></a><a href={SMS}>문자로 물어보기 <span>제품 사진도 같은 번호로</span></a></div>
+        <DesktopLeadForm />
         <p className="ask-note">문의만으로 예약이 확정되지 않아요. 작업과 비용·일정을 상담한 뒤 결정하세요.</p>
       </section>
 

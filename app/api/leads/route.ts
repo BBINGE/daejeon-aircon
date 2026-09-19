@@ -1,11 +1,13 @@
 import { env } from "cloudflare:workers";
-import { and, desc, eq, lte } from "drizzle-orm";
+import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { leads } from "../../../db/schema";
 import { retentionDeadline } from "../../../db/retention";
 
 const allowedStatuses = new Set(["new", "contacted", "quoting", "won", "completed", "hold", "closed"]);
-const allowedOrigins = new Set(["https://bbinge.github.io", "https://kimdaegon-aircon.bbinge95.chatgpt.site", "http://localhost:3000"]);
+const allowedOrigins = new Set(["https://naengnanmarket.com", "https://bbinge.github.io", "https://kimdaegon-aircon.bbinge95.chatgpt.site", "http://localhost:3000"]);
+const inquiryTypes = new Set(["에어컨 설치", "이전설치", "철거", "중고 매입", "중고 에어컨 판매", "기타 상담"]);
+const CONSENT_VERSION = "pc-lead-2026-09-20";
 
 function corsHeaders(request: Request): Record<string, string> {
   const origin = request.headers.get("origin");
@@ -46,7 +48,52 @@ async function purgeExpired() {
 }
 
 export async function POST(request: Request) {
-  return json(request, { error: "온라인 접수는 종료되었습니다. 010-9183-2200으로 전화 또는 문자 문의해주세요." }, { status: 410 });
+  const origin = request.headers.get("origin");
+  if (!origin || !allowedOrigins.has(origin)) return json(request, { error: "허용되지 않은 접속 경로입니다." }, { status: 403 });
+  if (!request.headers.get("content-type")?.includes("application/json")) return json(request, { error: "요청 형식을 확인해주세요." }, { status: 415 });
+  if (Number(request.headers.get("content-length") || 0) > 3000) return json(request, { error: "입력 내용이 너무 깁니다." }, { status: 413 });
+  const workerEnv = env as unknown as { LEAD_NOTIFY_EMAIL?: string };
+  if (!workerEnv.LEAD_NOTIFY_EMAIL) return json(request, { error: "지금은 온라인 접수를 받을 수 없습니다. 010-9183-2200으로 전화해주세요." }, { status: 503 });
+  let body: Record<string, unknown>;
+  try {
+    const raw = await request.text();
+    if (raw.length > 3000) return json(request, { error: "입력 내용이 너무 깁니다." }, { status: 413 });
+    body = JSON.parse(raw) as Record<string, unknown>;
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("Invalid body");
+  } catch { return json(request, { error: "입력 내용을 다시 확인해주세요." }, { status: 400 }); }
+  if (typeof body.website === "string" && body.website.trim()) return json(request, { ok: true });
+  const phone = typeof body.phone === "string" ? body.phone.replace(/\D/g, "") : "";
+  if (!/^0\d{8,10}$/.test(phone)) return json(request, { error: "연락받을 번호를 확인해주세요." }, { status: 400 });
+  if (body.consent !== true) return json(request, { error: "개인정보 안내를 확인하고 동의해주세요." }, { status: 400 });
+  const inquiryType = cleanOptional(body.inquiryType, 30) || "상담 요청";
+  if (inquiryType !== "상담 요청" && !inquiryTypes.has(inquiryType)) return json(request, { error: "필요한 작업을 다시 선택해주세요." }, { status: 400 });
+  const region = cleanOptional(body.region, 40)?.replace(/[\r\n\t]/g, " ") || "미기재";
+  try {
+    const database = getDb();
+    const duplicateSince = new Date(Date.now() - 2 * 60_000).toISOString().slice(0, 19).replace("T", " ");
+    const [duplicate] = await database.select({ id: leads.id }).from(leads).where(and(eq(leads.phone, phone), gte(leads.createdAt, duplicateSince))).limit(1);
+    if (duplicate) return json(request, { ok: true, duplicate: true });
+    const [saved] = await database.insert(leads).values({ phone, region, inquiryType, airconType: "미기재", consentVersion: CONSENT_VERSION, consentAt: new Date().toISOString() }).returning({ id: leads.id });
+    if (!saved) throw new Error("접수 번호가 생성되지 않았습니다.");
+    let notificationPending = false;
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(workerEnv.LEAD_NOTIFY_EMAIL)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json", Origin: "https://naengnanmarket.com", Referer: "https://naengnanmarket.com/" },
+        body: JSON.stringify({ _subject: `새 PC 상담 신청 #${saved.id}`, 접수번호: String(saved.id), 연락처: phone, 필요한작업: inquiryType, 지역: region, 접수처: "naengnanmarket.com" }),
+        signal: AbortSignal.timeout(6000),
+      });
+      const notification = await response.json() as { success?: boolean | "true" };
+      if (!response.ok || (notification.success !== true && notification.success !== "true")) throw new Error(`메일 알림 응답 ${response.status}`);
+    } catch (error) {
+      console.error("PC 상담 알림 발송 실패", saved.id, error);
+      notificationPending = true;
+    }
+    return json(request, { ok: true, notificationPending });
+  } catch (error) {
+    console.error("PC 상담 접수 실패", error);
+    return json(request, { error: "접수되지 않았습니다. 잠시 후 다시 시도하거나 010-9183-2200으로 전화해주세요." }, { status: 503 });
+  }
 }
 
 export async function GET(request: Request) {

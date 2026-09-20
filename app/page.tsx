@@ -121,6 +121,7 @@ export default function Home() {
         <a className="quick-rail-top" href="#top" aria-label="맨 위로 이동">↑ TOP</a>
       </aside>
 
+      <link rel="preload" as="image" href="/images/unit.webp" fetchPriority="high" />
       <section className="hero story-hero" id="top">
         <div className="hero-image" role="img" aria-label="에어컨 실제 작업 현장" />
         <div className="hero-shade" />

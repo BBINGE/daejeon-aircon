@@ -1,4 +1,3 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 @import "tailwindcss";
 
 :root{--ink:#101e2d;--navy:#09243a;--blue:#087cf0;--cyan:#3bd6ed;--soft:#f2f7fa;--line:#dbe6ec;--orange:#ff6b35}

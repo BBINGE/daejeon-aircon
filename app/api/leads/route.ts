@@ -7,7 +7,7 @@ import { retentionDeadline } from "../../../db/retention";
 const allowedStatuses = new Set(["new", "contacted", "quoting", "won", "completed", "hold", "closed"]);
 const allowedOrigins = new Set(["https://naengnanmarket.com", "https://bbinge.github.io", "https://kimdaegon-aircon.bbinge95.chatgpt.site", "http://localhost:3000"]);
 const inquiryTypes = new Set(["에어컨 설치", "이전설치", "철거", "중고 매입", "중고 에어컨 판매", "기타 상담"]);
-const CONSENT_VERSION = "pc-lead-2026-09-20";
+const CONSENT_VERSION = "callback-lead-2026-09-21";
 
 function corsHeaders(request: Request): Record<string, string> {
   const origin = request.headers.get("origin");
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
       const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(workerEnv.LEAD_NOTIFY_EMAIL)}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json", Origin: "https://naengnanmarket.com", Referer: "https://naengnanmarket.com/" },
-        body: JSON.stringify({ _subject: `새 PC 상담 신청 #${saved.id}`, 접수번호: String(saved.id), 연락처: phone, 필요한작업: inquiryType, 지역: region, 접수처: "naengnanmarket.com" }),
+        body: JSON.stringify({ _subject: `새 상담 신청 #${saved.id}`, 접수번호: String(saved.id), 연락처: phone, 필요한작업: inquiryType, 지역: region, 접수처: "naengnanmarket.com" }),
         signal: AbortSignal.timeout(6000),
       });
       const notification = await response.json() as { success?: boolean | "true" };

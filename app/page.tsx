@@ -51,7 +51,7 @@ function ContactCard({ compact = false }: { compact?: boolean }) {
     <p className="contact-intro">이전설치·철거·중고 냉난방기 매입과 구매를 상담합니다.</p>
     <a className="contact-phone" href={PHONE}><span>대표님께 전화하기</span><strong>010-9183-2200</strong></a>
     <a className="contact-sms" href={SMS}>문자로 먼저 문의하기 <b aria-hidden="true">↗</b></a>
-    <a className="contact-pc-form" href="#pc-inquiry">PC에서 전화 상담 신청하기 →</a>
+    <a className="contact-pc-form" href="#pc-inquiry">상담 신청하기 →</a>
     <p className="contact-help">통화가 어려우시면 지역과 필요한 작업을 문자로 남겨주세요. 제품 사진도 같은 번호로 보내시면 됩니다.</p>
     <p className="contact-fallback">버튼이 열리지 않으면 휴대폰에서 위 번호로 연락해주세요.</p>
   </div>;

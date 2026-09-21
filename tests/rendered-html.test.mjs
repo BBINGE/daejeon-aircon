@@ -52,13 +52,14 @@ try {
   assert.equal(rows.length, 2);
   assert.equal(rows[1].phone, '01000000000');
   assert.equal(rows[1].inquiryType, '에어컨 설치');
-  assert.equal(rows[1].consentVersion, 'pc-lead-2026-09-20');
+  assert.equal(rows[1].consentVersion, 'callback-lead-2026-09-21');
   assert.equal((await db.prepare('select count(*) as count from leads').first()).count, 2);
   assert.equal(mailCount, 2);
 
   const home = await (await mf.dispatchFetch('http://localhost/')).text();
   assert.ok(home.includes('id="pc-inquiry"'));
-  assert.ok(home.includes('전화 상담 신청하기'));
+  assert.ok(home.includes('>상담 신청하기</button>'));
+  assert.ok(home.includes('접수 내용을 확인한 뒤 김대곤 대표가 전화드립니다.'));
   assert.ok(home.includes('href="sms:01091832200"'));
   assert.ok(home.includes('href="tel:01091832200"'));
   for (const url of ['/', '/privacy', '/terms']) {

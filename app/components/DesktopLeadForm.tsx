@@ -2,6 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 
+declare global {
+  interface Window {
+    naengnanTrack?: (name: string, params?: Record<string, string | boolean>) => void;
+  }
+}
+
 const inquiryTypes = ["에어컨 설치", "이전설치", "철거", "중고 매입", "중고 에어컨 판매", "기타 상담"];
 
 export default function DesktopLeadForm() {
@@ -18,16 +24,27 @@ export default function DesktopLeadForm() {
     if (state === "sending") return;
     setState("sending");
     setError("");
+    window.naengnanTrack?.("form_submit_attempt", { form_name: "callback_form" });
+    let errorType = "network";
     try {
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone, inquiryType, region, consent: agreed, website }),
       });
-      const result = await response.json() as { error?: string; notificationPending?: boolean };
-      if (!response.ok) throw new Error(result.error || "접수되지 않았습니다. 다시 시도해주세요.");
+      const result = await response.json() as { error?: string; notificationPending?: boolean; duplicate?: boolean };
+      if (!response.ok) {
+        errorType = response.status >= 500 ? "server" : "validation";
+        throw new Error(result.error || "접수되지 않았습니다. 다시 시도해주세요.");
+      }
+      if (result.duplicate) {
+        window.naengnanTrack?.("form_submit_duplicate", { form_name: "callback_form" });
+      } else {
+        window.naengnanTrack?.("generate_lead", { method: "callback_form", notification_status: result.notificationPending ? "pending" : "sent" });
+      }
       setState(result.notificationPending ? "done-needs-call" : "done");
     } catch (reason) {
+      window.naengnanTrack?.("form_submit_error", { form_name: "callback_form", error_type: errorType });
       setError(reason instanceof Error ? reason.message : "접수되지 않았습니다. 다시 시도해주세요.");
       setState("idle");
     }

@@ -7,6 +7,7 @@ import { retentionDeadline } from "../../../db/retention";
 const allowedStatuses = new Set(["new", "contacted", "quoting", "won", "completed", "hold", "closed"]);
 const allowedOrigins = new Set(["https://naengnanmarket.com", "https://bbinge.github.io", "https://kimdaegon-aircon.bbinge95.chatgpt.site", "http://localhost:3000"]);
 const inquiryTypes = new Set(["에어컨 설치", "이전설치", "철거", "중고 매입", "중고 에어컨 판매", "기타 상담"]);
+const CONSENT_VERSION = "callback-lead-2026-09-21-v2";
 
 function corsHeaders(request: Request): Record<string, string> {
   const origin = request.headers.get("origin");
@@ -63,6 +64,7 @@ export async function POST(request: Request) {
   if (typeof body.website === "string" && body.website.trim()) return json(request, { ok: true });
   const phone = typeof body.phone === "string" ? body.phone.replace(/\D/g, "") : "";
   if (!/^0\d{8,10}$/.test(phone)) return json(request, { error: "연락받을 번호를 확인해주세요." }, { status: 400 });
+  if (body.consent !== true) return json(request, { error: "개인정보 안내를 확인하고 동의해주세요." }, { status: 400 });
   const inquiryType = cleanOptional(body.inquiryType, 30) || "상담 요청";
   if (inquiryType !== "상담 요청" && !inquiryTypes.has(inquiryType)) return json(request, { error: "필요한 작업을 다시 선택해주세요." }, { status: 400 });
   const region = cleanOptional(body.region, 40)?.replace(/[\r\n\t]/g, " ") || "미기재";
@@ -71,7 +73,7 @@ export async function POST(request: Request) {
     const duplicateSince = new Date(Date.now() - 2 * 60_000).toISOString().slice(0, 19).replace("T", " ");
     const [duplicate] = await database.select({ id: leads.id }).from(leads).where(and(eq(leads.phone, phone), gte(leads.createdAt, duplicateSince))).limit(1);
     if (duplicate) return json(request, { ok: true, duplicate: true });
-    const [saved] = await database.insert(leads).values({ phone, region, inquiryType, airconType: "미기재" }).returning({ id: leads.id });
+    const [saved] = await database.insert(leads).values({ phone, region, inquiryType, airconType: "미기재", consentVersion: CONSENT_VERSION, consentAt: new Date().toISOString() }).returning({ id: leads.id });
     if (!saved) throw new Error("접수 번호가 생성되지 않았습니다.");
     let notificationPending = false;
     try {

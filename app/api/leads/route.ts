@@ -81,12 +81,12 @@ export async function POST(request: Request) {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json", Origin: "https://naengnanmarket.com", Referer: "https://naengnanmarket.com/" },
         body: JSON.stringify({ _subject: `새 상담 신청 #${saved.id}`, 접수번호: String(saved.id), 연락처: phone, 필요한작업: inquiryType, 지역: region, 접수처: "naengnanmarket.com" }),
-        signal: AbortSignal.timeout(6000),
+        signal: AbortSignal.timeout(15000),
       });
       const notification = await response.json() as { success?: boolean | "true" };
       if (!response.ok || (notification.success !== true && notification.success !== "true")) throw new Error(`메일 알림 응답 ${response.status}`);
     } catch (error) {
-      console.error("PC 상담 알림 발송 실패", saved.id, error);
+      console.error("PC 상담 알림 발송 실패", saved.id, error instanceof Error ? `${error.name}: ${error.message}` : String(error));
       notificationPending = true;
     }
     return json(request, { ok: true, notificationPending });

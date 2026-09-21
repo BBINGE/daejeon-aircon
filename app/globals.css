@@ -156,3 +156,4 @@ footer{display:block}.footer-top{display:flex;align-items:center;padding-bottom:
 @media(min-width:801px){.ask-section .ask-actions{display:none}}
 .contact-pc-form{display:block;text-align:center;margin-top:12px;padding:10px;color:#126bcd;font-size:14px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:800px){.desktop-lead,.contact-pc-form{display:none}}
+@media(max-width:800px) and (pointer:fine){.desktop-lead{display:grid;grid-template-columns:1fr;gap:18px;margin-top:28px;padding:20px}.desktop-lead-copy h3{font-size:25px}.desktop-lead-form{padding:18px}.desktop-lead-fields{grid-template-columns:1fr}.contact-pc-form{display:block}.ask-section .ask-actions{display:none}}

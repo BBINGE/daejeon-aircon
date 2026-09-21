@@ -9,10 +9,10 @@ const SMS = "sms:01091832200";
 const areas = ["대전", "세종·조치원", "청주", "천안", "공주", "계룡", "논산", "부여", "금산", "옥천", "전주", "익산", "무주"];
 
 const workPhotos = [
-  ["/images/install.webp", "난간 옆 실외기 배관 작업 현장", "실외기 배관 작업", "난간 옆 실외기에 장비를 연결해 작업하는 모습입니다."],
-  ["/images/service.webp", "제품 점검", "현장 점검"],
-  ["/images/roof.webp", "옥상 작업", "실외기 설치"],
-  ["/images/work.webp", "실외기 작업", "배관·실외기"],
+  ["/images/install-anonymous.webp", "난간 옆 실외기 배관 작업 현장", "실외기 배관 작업", "난간 옆 실외기에 장비를 연결해 작업하는 모습입니다."],
+  ["/images/service-anonymous.webp", "제품 점검", "현장 점검"],
+  ["/images/roof-anonymous.webp", "옥상 작업", "실외기 설치"],
+  ["/images/work-anonymous.webp", "실외기 작업", "배관·실외기"],
   ["/images/removal-load.jpg", "철거한 실내기와 실외기를 차량에 적재한 모습", "철거 제품 반출", "철거한 실내기와 실외기를 차량에 적재한 모습입니다."],
   ["/images/removal-units.jpg", "철거 후 한 공간에 모아둔 실내기와 실외기", "철거 후 제품 정리", "여러 대의 실내기와 실외기를 한 공간에 모아둔 모습입니다."],
   ["/images/unit-anonymous.webp", "제품 설치", "설치 완료"],
@@ -155,7 +155,7 @@ export default function Home() {
           <div className="story-copy"><p className="story-number">02 <span>철거 · 중고 매입 · 무료수거</span></p><h3>안 쓰는 냉난방기,<br />팔거나 수거할 수 있을까요?</h3><p>이사나 매장 정리로 남은 제품.<br />제품 상태와 철거 조건을 함께 확인합니다.</p><ul><li>모델·연식·작동 상태에 따른 매입 가능 여부</li><li>제품·현장 조건에 따른 무료수거 가능 여부</li><li>철거만 필요하거나 여러 대여도 상담</li></ul><a href="#estimate">철거·매입·수거 물어보기 →</a></div>
         </article>
         <article className="service-story story-blue">
-          <figure><img src="/images/service.webp" alt="실내기를 준비하고 작업하는 실제 현장" width="1800" height="1013" loading="lazy" /><figcaption>실제 실내기 작업 현장</figcaption><ServiceFlow steps={[["home","공간·예산"],["air","제품 확인"],["chat","설치 상담"]]}/></figure>
+          <figure><img src="/images/service-anonymous.webp" alt="실내기를 준비하고 작업하는 실제 현장" width="1672" height="941" loading="lazy" /><figcaption>실제 실내기 작업 현장</figcaption><ServiceFlow steps={[["home","공간·예산"],["air","제품 확인"],["chat","설치 상담"]]}/></figure>
           <div className="story-copy"><p className="story-number">03 <span>중고 에어컨 판매 · 설치</span></p><h3>중고로 구매하고<br />설치까지 맡기고 싶어요.</h3><p>공간과 예산에 맞는 제품을 함께 확인해요.<br />가정은 물론 새로 여는 사무실·매장도 상담합니다.</p><ul><li>판매 가능한 제품의 기능·용량 확인</li><li>제품 가격과 설치·추가 작업비 구분</li><li>제품 상태·보증 조건을 상담 후 결정</li></ul><a href="#estimate">구매·설치 물어보기 →</a></div>
         </article>
       </section>

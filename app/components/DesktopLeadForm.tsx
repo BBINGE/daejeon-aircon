@@ -8,7 +8,6 @@ export default function DesktopLeadForm() {
   const [phone, setPhone] = useState("");
   const [inquiryType, setInquiryType] = useState("");
   const [region, setRegion] = useState("");
-  const [agreed, setAgreed] = useState(false);
   const [website, setWebsite] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done" | "done-needs-call">("idle");
   const [error, setError] = useState("");
@@ -22,7 +21,7 @@ export default function DesktopLeadForm() {
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, inquiryType, region, consent: agreed, website }),
+        body: JSON.stringify({ phone, inquiryType, region, website }),
       });
       const result = await response.json() as { error?: string; notificationPending?: boolean };
       if (!response.ok) throw new Error(result.error || "접수되지 않았습니다. 다시 시도해주세요.");
@@ -39,7 +38,7 @@ export default function DesktopLeadForm() {
       <label htmlFor="lead-phone">연락받을 번호 <b>필수</b></label><input id="lead-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="010-1234-5678" value={phone} onChange={event => setPhone(event.target.value)} maxLength={20} required />
       <div className="desktop-lead-fields"><div><label htmlFor="lead-type">필요한 작업 <small>선택</small></label><select id="lead-type" name="inquiryType" value={inquiryType} onChange={event => setInquiryType(event.target.value)}><option value="">선택하지 않아도 돼요</option>{inquiryTypes.map(type => <option key={type}>{type}</option>)}</select></div><div><label htmlFor="lead-region">지역 <small>선택</small></label><input id="lead-region" name="region" placeholder="예: 대전 서구" value={region} onChange={event => setRegion(event.target.value)} maxLength={40} /></div></div>
       <div className="lead-trap" aria-hidden="true"><label htmlFor="lead-website">웹사이트</label><input id="lead-website" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={event => setWebsite(event.target.value)} /></div>
-      <label className="desktop-lead-consent"><input type="checkbox" checked={agreed} onChange={event => setAgreed(event.target.checked)} required /><span>박성호의 접수, 김대곤 대표에게 전달, FormSubmit 메일 알림을 위한 연락처 처리에 동의합니다. <a href="/privacy" target="_blank" rel="noopener noreferrer">개인정보 안내</a></span></label>
+      <p className="desktop-lead-notice">입력하신 번호로 상담 전화를 드립니다. <a href="/privacy" target="_blank" rel="noopener noreferrer">개인정보 안내</a></p>
       {error && <p className="desktop-lead-error" role="alert">{error}</p>}
       <button type="submit" disabled={state === "sending"}>{state === "sending" ? "신청 중…" : "상담 신청하기"}</button><p className="desktop-lead-foot">신청만으로 예약·견적이 확정되지 않습니다.</p>
     </form>}

@@ -49,7 +49,7 @@ function ContactCard({ compact = false }: { compact?: boolean }) {
     <span className="contact-badge">김대곤 대표 직접 상담</span>
     <h2>필요한 작업,<br />전화로 편하게 말씀해 주세요.</h2>
     <p className="contact-intro">이전설치·철거·중고 냉난방기 매입과 구매를 상담합니다.</p>
-    <a className="contact-phone" href={PHONE}><span>대표님께 전화하기</span><strong>010-9183-2200</strong></a>
+    <a className="contact-phone" href={PHONE}><span>전화 상담하기</span><strong>010-9183-2200</strong></a>
     <a className="contact-sms" href={SMS}>문자로 먼저 문의하기 <b aria-hidden="true">↗</b></a>
     <a className="contact-pc-form" href="#pc-inquiry">상담 신청하기 →</a>
     <p className="contact-help">통화가 어려우시면 지역과 필요한 작업을 문자로 남겨주세요. 제품 사진도 같은 번호로 보내시면 됩니다.</p>
@@ -109,9 +109,9 @@ export default function Home() {
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
-      <header className="topbar"><a className="brand" href="#top"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a><a href="#pc-inquiry">상담 신청</a></nav><a className="top-cta" href={PHONE} aria-label="김대곤 대표에게 전화하기 010-9183-2200"><span aria-hidden="true">☎</span>010-9183-2200</a></header>
+      <header className="topbar"><a className="brand" href="#top"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></a><nav className="desktop-nav" aria-label="주요 메뉴"><a href="#service">서비스</a><a href="#work">작업 현장</a><a href="#area">서비스 지역</a><a href="#faq">자주 묻는 질문</a><a href="#pc-inquiry">상담 신청</a></nav><a className="top-cta" href={PHONE} aria-label="전화 상담하기 010-9183-2200"><span aria-hidden="true">☎</span>010-9183-2200</a></header>
       <aside className="quick-rail" aria-label="빠른 이동 메뉴">
-        <a className="quick-rail-cta" href={PHONE}><b>전화</b><span>대표님께 문의</span></a>
+        <a className="quick-rail-cta" href={PHONE}><b>전화</b><span>전화 상담</span></a>
         <a href="#situations"><i>01</i><span>신청 상황</span></a>
         <a href="#service"><i>02</i><span>서비스</span></a>
         <a href="#work"><i>03</i><span>작업 현장</span></a>
@@ -188,7 +188,7 @@ export default function Home() {
 
       <section className="final"><div><p>집·사무실·식당·카페의 에어컨·냉난방기</p><h2>옮길 때도, 정리할 때도.<br /><em>필요한 작업부터 물어보세요.</em></h2><span>문의만으로 예약이나 결제가 확정되지 않습니다. 대표가 확인 후 안내합니다.</span></div><ContactCard compact /></section>
       <footer><div className="footer-top"><div className="brand"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></div><nav><a href="/terms">서비스 이용안내</a><a href="/privacy"><strong>개인정보처리방침</strong></a></nav></div><div className="business-info"><p>상호 에어컨설치.에어컨이전설치.에어컨중고판매<br />대표자 김대곤　 사업자등록번호 801-39-00586</p><p>사업장 주소 대전광역시 서구 도산로 209-1, 1층(변동)　 대표전화 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p><p>개인정보 보호책임자 김대곤　 연락처 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p></div><p className="copyright">© 2026 에어컨설치.에어컨이전설치.에어컨중고판매. All rights reserved.</p></footer>
-      <nav className="sticky" aria-label="전화·문자 문의"><a className="sticky-call" href={PHONE}><span>대표님께 전화</span><small>010-9183-2200</small><b>☎</b></a><a className="sticky-sms" href={SMS}><span>문자 문의</span><small>사진도 같은 번호로</small><b>↗</b></a></nav>
+      <nav className="sticky" aria-label="전화·문자 문의"><a className="sticky-call" href={PHONE}><span>전화 상담하기</span><small>010-9183-2200</small><b>☎</b></a><a className="sticky-sms" href={SMS}><span>문자 문의하기</span><small>사진도 같은 번호로</small><b>↗</b></a></nav>
     </main>
   );
 }

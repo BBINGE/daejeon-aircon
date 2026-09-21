@@ -63,7 +63,10 @@ try {
   assert.ok(home.includes('입력하신 번호로 상담 전화를 드리는 데 동의합니다.'));
   assert.ok(!home.includes('박성호의 접수'));
   assert.ok(!home.includes('FormSubmit 메일 알림을 위한 연락처 처리'));
-  assert.ok(home.includes('접수 내용을 확인한 뒤 김대곤 대표가 전화드립니다.'));
+  assert.ok(home.includes('접수 내용을 확인한 뒤 담당자가 전화드립니다.'));
+  assert.ok(home.includes('전화 상담하기'));
+  assert.ok(home.includes('문자 문의하기'));
+  assert.ok(!home.includes('대표님께 전화'));
   assert.ok(home.includes('href="sms:01091832200"'));
   assert.ok(home.includes('href="tel:01091832200"'));
   for (const url of ['/', '/privacy', '/terms']) {

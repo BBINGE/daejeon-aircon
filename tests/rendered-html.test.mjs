@@ -42,7 +42,7 @@ try {
   assert.equal((await call('POST', { phone: '010-0000-0000', consent: true }, '', 'https://untrusted.example'))[0], 403);
   assert.equal((await call('POST', { phone: '123', consent: true }))[0], 400);
   assert.equal((await call('POST', { phone: '010-0000-0000', consent: false }))[0], 400);
-  const lead = { phone: '010-0000-0000', consent: true, inquiryType: '에어컨 설치', region: '대전 서구' };
+  const lead = { phone: '010-0000-0000', consent: true, inquiryType: '무료수거', region: '대전 서구' };
   assert.equal((await call('POST', lead))[0], 200);
   assert.equal((await call('POST', lead))[1].duplicate, true);
   const failedAlert = await call('POST', { phone: '010-1111-2222', consent: true, inquiryType: '중고 매입' });
@@ -51,7 +51,7 @@ try {
   const rows = (await call('GET', null, 'local-test-key-only'))[1].leads;
   assert.equal(rows.length, 2);
   assert.equal(rows[1].phone, '01000000000');
-  assert.equal(rows[1].inquiryType, '에어컨 설치');
+  assert.equal(rows[1].inquiryType, '무료수거');
   assert.equal(rows[1].consentVersion, 'callback-lead-2026-09-21-v2');
   assert.ok(rows[1].consentAt);
   assert.equal((await db.prepare('select count(*) as count from leads').first()).count, 2);
@@ -66,6 +66,7 @@ try {
   assert.ok(home.includes('접수 내용을 확인한 뒤 담당자가 전화드립니다.'));
   assert.ok(home.includes('전화 상담하기'));
   assert.ok(home.includes('문자 문의하기'));
+  assert.ok(home.includes('무료수거'));
   assert.ok(!home.includes('대표님께 전화'));
   assert.ok(home.includes('href="sms:01091832200"'));
   assert.ok(home.includes('href="tel:01091832200"'));

@@ -144,9 +144,9 @@ footer{display:block}.footer-top{display:flex;align-items:center;padding-bottom:
 /* Photo captions describe only visible, verified work. */
 .gallery-track figcaption>div{min-width:0;font-size:14px}.gallery-track figcaption p{margin:5px 0 0;font-size:13px;font-weight:400;line-height:1.5;color:#e1ebf2}
 
-/* Keep the direct-call number legible in the header and five services scannable on phones. */
+/* Keep the direct-call number legible in the header and six services scannable on phones. */
 .topbar .top-cta{gap:7px;white-space:nowrap;min-height:44px}
-@media(max-width:800px){.topbar{padding:0 12px;gap:8px}.topbar .brand span{display:none}.topbar .brand i{font-size:12px;padding:7px 8px}.topbar .top-cta{display:inline-flex;flex-shrink:0;font-size:14px;padding:10px 12px}.hero-services span:last-child{grid-column:1/-1}}
+@media(max-width:800px){.topbar{padding:0 12px;gap:8px}.topbar .brand span{display:none}.topbar .brand i{font-size:12px;padding:7px 8px}.topbar .top-cta{display:inline-flex;flex-shrink:0;font-size:14px;padding:10px 12px}}
 @media(max-width:360px){.topbar .brand i{font-size:11px}.topbar .top-cta{font-size:12px;padding:9px 10px}.story-hero .hero-inner{padding-top:45px}.story-hero .eyebrow{margin-bottom:16px}.story-hero .hero-sub{margin:16px 0}.hero-inquiry{margin-top:22px}}
 
 /* Desktop visitors can request a call while mobile keeps direct phone and SMS links. */

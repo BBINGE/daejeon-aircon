@@ -6,7 +6,7 @@ import { retentionDeadline } from "../../../db/retention";
 
 const allowedStatuses = new Set(["new", "contacted", "quoting", "won", "completed", "hold", "closed"]);
 const allowedOrigins = new Set(["https://naengnanmarket.com", "https://bbinge.github.io", "https://kimdaegon-aircon.bbinge95.chatgpt.site", "http://localhost:3000"]);
-const inquiryTypes = new Set(["에어컨 설치", "이전설치", "철거", "중고 매입", "중고 에어컨 판매", "기타 상담"]);
+const inquiryTypes = new Set(["에어컨 설치", "이전설치", "철거", "무료수거", "중고 매입", "중고 에어컨 판매", "기타 상담"]);
 const CONSENT_VERSION = "callback-lead-2026-09-21-v2";
 
 function corsHeaders(request: Request): Record<string, string> {

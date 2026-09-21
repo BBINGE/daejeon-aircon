@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-const inquiryTypes = ["에어컨 설치", "이전설치", "철거", "중고 매입", "중고 에어컨 판매", "기타 상담"];
+const inquiryTypes = ["에어컨 설치", "이전설치", "철거", "무료수거", "중고 매입", "중고 에어컨 판매", "기타 상담"];
 
 export default function DesktopLeadForm() {
   const [phone, setPhone] = useState("");

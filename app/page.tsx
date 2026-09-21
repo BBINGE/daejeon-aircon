@@ -48,7 +48,7 @@ function ContactCard({ compact = false }: { compact?: boolean }) {
   return <div className="contact-card" id={compact ? "final-contact" : "estimate"}>
     <span className="contact-badge">김대곤 대표 직접 상담</span>
     <h2>필요한 작업,<br />전화로 편하게 말씀해 주세요.</h2>
-    <p className="contact-intro">이전설치·철거·중고 냉난방기 매입과 구매를 상담합니다.</p>
+    <p className="contact-intro">이전설치·철거·무료수거·중고 냉난방기 매입과 구매를 상담합니다.</p>
     <a className="contact-phone" href={PHONE}><span>전화 상담하기</span><strong>010-9183-2200</strong></a>
     <a className="contact-sms" href={SMS}>문자로 먼저 문의하기 <b aria-hidden="true">↗</b></a>
     <a className="contact-pc-form" href="#pc-inquiry">상담 신청하기 →</a>
@@ -129,7 +129,7 @@ export default function Home() {
           <p className="eyebrow">대전·세종·충청권 중심 · 가정부터 사업장까지</p>
           <h1>에어컨·냉난방기,<br /><em>옮기고 설치하고<br className="mobile-break" /> 정리할 때.</em></h1>
           <p className="hero-sub">이사하는 집에도, 새로 여는 매장에도.<br />필요한 제품과 작업을 함께 상담합니다.</p>
-          <div className="hero-services" aria-label="상담 서비스"><span><ServiceIcon kind="air"/>에어컨 설치</span><span><ServiceIcon kind="truck"/>이전설치</span><span><ServiceIcon kind="tool"/>철거</span><span><ServiceIcon kind="coin"/>중고 매입</span><span><ServiceIcon kind="air"/>중고 에어컨 판매</span></div>
+          <div className="hero-services" aria-label="상담 서비스"><span><ServiceIcon kind="air"/>에어컨 설치</span><span><ServiceIcon kind="truck"/>이전설치</span><span><ServiceIcon kind="tool"/>철거</span><span><ServiceIcon kind="coin"/>중고 매입</span><span><ServiceIcon kind="air"/>중고 에어컨 판매</span><span><ServiceIcon kind="truck"/>무료수거</span></div>
           <a className="hero-inquiry" href="#estimate">무엇이든 물어보세요 <span aria-hidden="true">↓</span></a>
           <p className="hero-signature">김대곤 대표 직접 상담 · 실제 현장 사진</p>
         </div>
@@ -152,7 +152,7 @@ export default function Home() {
         </article>
         <article className="service-story story-dark">
           <figure><img src="/images/removal-load.jpg" alt="철거한 에어컨과 실외기를 차량에 적재한 현장" width="1920" height="2560" loading="lazy" /><figcaption>철거·반출 현장 사진이며 판매 재고가 아닙니다.</figcaption><ServiceFlow steps={[["camera","제품 사진"],["check","상태 확인"],["chat","매입 여부 안내"]]}/></figure>
-          <div className="story-copy"><p className="story-number">02 <span>철거 · 중고 매입</span></p><h3>안 쓰는 냉난방기,<br />팔 수 있을까요?</h3><p>이사나 매장 정리로 남은 제품.<br />제품 상태와 철거 조건을 함께 확인합니다.</p><ul><li>모델·연식·작동 상태에 따른 매입 가능 여부</li><li>철거·수거 비용과 작업 조건 확인</li><li>철거만 필요하거나 여러 대여도 상담</li></ul><a href="#estimate">철거·매입 물어보기 →</a></div>
+          <div className="story-copy"><p className="story-number">02 <span>철거 · 중고 매입 · 무료수거</span></p><h3>안 쓰는 냉난방기,<br />팔거나 수거할 수 있을까요?</h3><p>이사나 매장 정리로 남은 제품.<br />제품 상태와 철거 조건을 함께 확인합니다.</p><ul><li>모델·연식·작동 상태에 따른 매입 가능 여부</li><li>제품·현장 조건에 따른 무료수거 가능 여부</li><li>철거만 필요하거나 여러 대여도 상담</li></ul><a href="#estimate">철거·매입·수거 물어보기 →</a></div>
         </article>
         <article className="service-story story-blue">
           <figure><img src="/images/service.webp" alt="실내기를 준비하고 작업하는 실제 현장" width="1800" height="1013" loading="lazy" /><figcaption>실제 실내기 작업 현장</figcaption><ServiceFlow steps={[["home","공간·예산"],["air","제품 확인"],["chat","설치 상담"]]}/></figure>
@@ -174,7 +174,7 @@ export default function Home() {
       <section className="price-section section">
         <div className="section-title"><p>PRICE CHECK</p><h2>견적을 받을 때,<br /><em>포함되는 비용까지 확인하세요.</em></h2></div>
         <div className="factors">{["제품 종류·대수", "철거 비용", "운반·이전 거리", "설치 비용", "배관·실외기 위치", "추가 작업", "매입·수거 조건", "제품 가격·보증"].map((x,i)=><span key={x}><b>{String(i+1).padStart(2,"0")}</b>{x}</span>)}</div>
-        <p className="price-note">이전설치는 철거·운반·설치의 포함 범위를, 매입은 금액과 수거 비용을 확인합니다.<br />중고 구매는 제품 가격과 설치비, 보증 조건을 구분해 상담하세요.</p>
+        <p className="price-note">이전설치는 철거·운반·설치의 포함 범위를, 매입·수거는 제품과 현장 조건을 확인합니다.<br />중고 구매는 제품 가격과 설치비, 보증 조건을 구분해 상담하세요.</p>
       </section>
 
       <section className="area-section" id="area">
@@ -184,7 +184,7 @@ export default function Home() {
 
       <section className="process section"><div className="section-title"><p>HOW IT WORKS</p><h2>복잡한 설명은 줄이고,<br /><em>결정에 필요한 것만.</em></h2></div><ol>{[["01","전화·문자 상담","대표님 번호로 지역과 필요한 작업을 말씀해주세요."],["02","상황 확인","제품과 현장 조건을 대표가 직접 확인합니다."],["03","일정·견적 안내","작업 범위와 비용, 가능한 일정을 안내합니다."],["04","현장 작업","확정한 일정과 내용에 맞춰 작업합니다."]].map(([n,t,d])=><li key={n}><b>{n}</b><h3>{t}</h3><p>{d}</p></li>)}</ol></section>
 
-      <section className="faq section" id="faq"><div className="section-title"><p>FAQ</p><h2>망설이는 이유,<br /><em>여기서 먼저 풀어보세요.</em></h2></div><div>{[["사무실·식당·카페도 이전설치할 수 있나요?","네. 가정과 사업장 모두 상담합니다. 출발·도착 지역, 제품 종류와 대수, 희망일을 알려주시면 현장 조건과 작업 가능 여부를 확인합니다."],["철거만 하거나 중고 매입도 문의할 수 있나요?","철거만 필요한 경우와 매입을 원하는 경우를 구분해 상담합니다. 매입 여부와 금액은 제품 상태에 따라 달라지며 철거·수거 비용도 함께 확인합니다."],["냉난방기 중고 구매와 설치를 함께 문의할 수 있나요?","네. 사용할 공간과 예산을 알려주세요. 실제 재고, 제품의 난방 기능, 용량과 설치 조건을 확인합니다."],["중고 제품 가격에 설치비가 포함되나요?","제품과 현장에 따라 달라집니다. 제품 가격, 설치비와 추가 작업비의 포함 여부 및 보증 조건을 구매 전에 확인해주세요."],["통화가 어렵거나 제품 사진을 보내고 싶어요.","010-9183-2200으로 지역과 필요한 작업을 문자로 남겨주세요. 제품 사진도 같은 번호로 보내시면 됩니다. 문의만으로 예약이 확정되지는 않으며, 작업 범위와 비용·일정을 상담한 뒤 결정합니다."]].map(([q,a])=><details key={q}><summary>{q}<i>+</i></summary><p>{a}</p></details>)}</div></section>
+      <section className="faq section" id="faq"><div className="section-title"><p>FAQ</p><h2>망설이는 이유,<br /><em>여기서 먼저 풀어보세요.</em></h2></div><div>{[["사무실·식당·카페도 이전설치할 수 있나요?","네. 가정과 사업장 모두 상담합니다. 출발·도착 지역, 제품 종류와 대수, 희망일을 알려주시면 현장 조건과 작업 가능 여부를 확인합니다."],["철거·중고 매입·무료수거도 문의할 수 있나요?","네. 철거만 필요한 경우, 매입을 원하는 경우와 무료수거를 구분해 상담합니다. 제품 상태와 현장 조건을 확인한 뒤 매입 금액이나 무료수거 가능 여부를 안내합니다."],["냉난방기 중고 구매와 설치를 함께 문의할 수 있나요?","네. 사용할 공간과 예산을 알려주세요. 실제 재고, 제품의 난방 기능, 용량과 설치 조건을 확인합니다."],["중고 제품 가격에 설치비가 포함되나요?","제품과 현장에 따라 달라집니다. 제품 가격, 설치비와 추가 작업비의 포함 여부 및 보증 조건을 구매 전에 확인해주세요."],["통화가 어렵거나 제품 사진을 보내고 싶어요.","010-9183-2200으로 지역과 필요한 작업을 문자로 남겨주세요. 제품 사진도 같은 번호로 보내시면 됩니다. 문의만으로 예약이 확정되지는 않으며, 작업 범위와 비용·일정을 상담한 뒤 결정합니다."]].map(([q,a])=><details key={q}><summary>{q}<i>+</i></summary><p>{a}</p></details>)}</div></section>
 
       <section className="final"><div><p>집·사무실·식당·카페의 에어컨·냉난방기</p><h2>옮길 때도, 정리할 때도.<br /><em>필요한 작업부터 물어보세요.</em></h2><span>문의만으로 예약이나 결제가 확정되지 않습니다. 대표가 확인 후 안내합니다.</span></div><ContactCard compact /></section>
       <footer><div className="footer-top"><div className="brand"><i>냉난방기설치매입</i><span>이전설치·철거·중고</span></div><nav><a href="/terms">서비스 이용안내</a><a href="/privacy"><strong>개인정보처리방침</strong></a></nav></div><div className="business-info"><p>상호 에어컨설치.에어컨이전설치.에어컨중고판매<br />대표자 김대곤　 사업자등록번호 801-39-00586</p><p>사업장 주소 대전광역시 서구 도산로 209-1, 1층(변동)　 대표전화 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p><p>개인정보 보호책임자 김대곤　 연락처 <a href="tel:01091832200"><strong>010-9183-2200</strong></a></p></div><p className="copyright">© 2026 에어컨설치.에어컨이전설치.에어컨중고판매. All rights reserved.</p></footer>

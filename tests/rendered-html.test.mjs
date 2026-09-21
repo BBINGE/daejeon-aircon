@@ -67,6 +67,7 @@ try {
   assert.ok(home.includes('전화 상담하기'));
   assert.ok(home.includes('문자 문의하기'));
   assert.ok(home.includes('무료수거'));
+  assert.ok(home.includes('unit-anonymous.webp'));
   assert.ok(!home.includes('대표님께 전화'));
   assert.ok(home.includes('href="sms:01091832200"'));
   assert.ok(home.includes('href="tel:01091832200"'));

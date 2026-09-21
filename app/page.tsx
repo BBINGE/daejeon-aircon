@@ -15,7 +15,7 @@ const workPhotos = [
   ["/images/work.webp", "실외기 작업", "배관·실외기"],
   ["/images/removal-load.jpg", "철거한 실내기와 실외기를 차량에 적재한 모습", "철거 제품 반출", "철거한 실내기와 실외기를 차량에 적재한 모습입니다."],
   ["/images/removal-units.jpg", "철거 후 한 공간에 모아둔 실내기와 실외기", "철거 후 제품 정리", "여러 대의 실내기와 실외기를 한 공간에 모아둔 모습입니다."],
-  ["/images/unit.webp", "제품 설치", "설치 완료"],
+  ["/images/unit-anonymous.webp", "제품 설치", "설치 완료"],
 ];
 
 
@@ -121,7 +121,7 @@ export default function Home() {
         <a className="quick-rail-top" href="#top" aria-label="맨 위로 이동">↑ TOP</a>
       </aside>
 
-      <link rel="preload" as="image" href="/images/unit.webp" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/unit-anonymous.webp" fetchPriority="high" />
       <section className="hero story-hero" id="top">
         <div className="hero-image" role="img" aria-label="에어컨 실제 작업 현장" />
         <div className="hero-shade" />
@@ -147,7 +147,7 @@ export default function Home() {
       <section className="service-stories" id="situations">
         <div className="stories-heading" id="service"><p className="section-kicker">이런 일을 도와드립니다</p><h2>지금 필요한 일,<br /><em>여기서 함께 확인하세요.</em></h2></div>
         <article className="service-story">
-          <figure><img src="/images/unit.webp" alt="실외기와 배관을 작업하는 실제 현장" width="1350" height="1800" loading="lazy" /><figcaption>실제 실외기 작업 현장</figcaption><ServiceFlow steps={[["home","기존 공간"],["truck","운반"],["air","새 공간 설치"]]}/></figure>
+          <figure><img src="/images/unit-anonymous.webp" alt="실외기와 배관을 작업하는 실제 현장" width="1086" height="1448" loading="lazy" /><figcaption>실제 실외기 작업 현장</figcaption><ServiceFlow steps={[["home","기존 공간"],["truck","운반"],["air","새 공간 설치"]]}/></figure>
           <div className="story-copy"><p className="story-number">01 <span>이전설치</span></p><h3>이사하는데,<br />에어컨도 옮겨야 해요.</h3><p>기존 제품 철거부터 새 공간의 설치까지.<br />집·사무실·식당·카페의 이전을 상담합니다.</p><ul><li>출발·도착 지역과 희망일 확인</li><li>철거일과 설치일 조율</li><li>제품 종류·대수와 현장 조건 확인</li></ul><a href="#estimate">이전설치 물어보기 →</a></div>
         </article>
         <article className="service-story story-dark">

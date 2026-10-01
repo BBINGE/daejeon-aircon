@@ -51,7 +51,7 @@
         if (!entry.isIntersecting) continue;
         const sectionName = entry.target.getAttribute('data-ga-section');
         if (sectionName) trackOnce('section:' + sectionName, 'section_view', {section_name: sectionName});
-        if (entry.target.id === 'pc-inquiry') trackOnce('form:view', 'form_view', {form_name: 'callback_form'});
+        if (entry.target.id === 'callback-form-panel') trackOnce('form:view', 'form_view', {form_name: 'callback_form'});
         observer.unobserve(entry.target);
       }
     }, {threshold: 0.15, rootMargin: '0px 0px -8% 0px'});
@@ -61,7 +61,7 @@
       element.setAttribute('data-ga-section', sectionName);
       observer.observe(element);
     }
-    const form = document.querySelector('#pc-inquiry');
+    const form = document.querySelector('#callback-form-panel');
     if (form) observer.observe(form);
   }
   window.naengnanTrack = track;

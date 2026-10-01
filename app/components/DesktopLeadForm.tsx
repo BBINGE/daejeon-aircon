@@ -11,6 +11,7 @@ declare global {
 const inquiryTypes = ["에어컨 설치", "이전설치", "철거", "무료수거", "중고 매입", "중고 에어컨 판매", "기타 상담"];
 
 export default function DesktopLeadForm() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [phone, setPhone] = useState("");
   const [inquiryType, setInquiryType] = useState("");
   const [region, setRegion] = useState("");
@@ -50,7 +51,14 @@ export default function DesktopLeadForm() {
     }
   }
 
-  return <div className="desktop-lead" id="pc-inquiry">
+  function toggleMobileForm() {
+    if (!mobileOpen) window.naengnanTrack?.("contact_cta_click", { contact_position: "content", target_section: "callback_form" });
+    setMobileOpen(open => !open);
+  }
+
+  return <div className="callback-request" id="pc-inquiry">
+    <button className="mobile-lead-toggle" type="button" aria-expanded={mobileOpen} aria-controls="callback-form-panel" onClick={toggleMobileForm}>{mobileOpen ? "신청 폼 접기" : "상담 신청하기"}</button>
+    <div className="desktop-lead" id="callback-form-panel" data-mobile-open={mobileOpen}>
     <div className="desktop-lead-copy"><span>전화 상담 신청</span><h3>연락처를 남기시면<br />전화로 상담드립니다.</h3><p>연락받을 번호를 입력하고 ‘상담 신청하기’를 누르시면, 접수 내용을 확인한 뒤 담당자가 전화드립니다.</p><a href="tel:01091832200">바로 통화하고 싶다면 010-9183-2200</a></div>
     {state === "done" || state === "done-needs-call" ? <div className="desktop-lead-done" role="status"><strong>상담 신청을 받았습니다.</strong><p>{state === "done-needs-call" ? "접수 알림이 지연되고 있어요. 빠른 상담을 원하시면 010-9183-2200으로 직접 전화해주세요." : "접수 내용을 확인한 뒤 담당자가 전화드리겠습니다. 급한 문의는 010-9183-2200으로 전화해주세요."}</p></div> : <form className="desktop-lead-form" onSubmit={submit}>
       <label htmlFor="lead-phone">연락받을 번호 <b>필수</b></label><input id="lead-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="010-1234-5678" value={phone} onChange={event => setPhone(event.target.value)} maxLength={20} required />
@@ -60,5 +68,6 @@ export default function DesktopLeadForm() {
       {error && <p className="desktop-lead-error" role="alert">{error}</p>}
       <button type="submit" disabled={state === "sending"}>{state === "sending" ? "신청 중…" : "상담 신청하기"}</button><p className="desktop-lead-foot">신청만으로 예약·견적이 확정되지 않습니다.</p>
     </form>}
+    </div>
   </div>;
 }

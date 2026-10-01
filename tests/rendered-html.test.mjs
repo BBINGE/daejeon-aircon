@@ -59,6 +59,8 @@ try {
 
   const home = await (await mf.dispatchFetch('http://localhost/')).text();
   assert.ok(home.includes('id="pc-inquiry"'));
+  assert.ok(home.includes('aria-controls="callback-form-panel"'));
+  assert.ok(home.includes('id="callback-form-panel" data-mobile-open="false"'));
   assert.ok(home.includes('>상담 신청하기</button>'));
   assert.ok(home.includes('입력하신 번호로 상담 전화를 드리는 데 동의합니다.'));
   assert.ok(!home.includes('박성호의 접수'));

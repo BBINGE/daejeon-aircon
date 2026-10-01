@@ -141,7 +141,6 @@ export default function Home() {
         <p className="ask-intro">내 제품도 가능한지, 우리 지역까지 오는지, 비용은 얼마나 들지.<br />김대곤 대표에게 전화나 문자로 편하게 물어보세요.</p>
         <div className="ask-actions"><a href={PHONE}>전화로 물어보기 <span>010-9183-2200</span></a><a href={SMS}>문자로 물어보기 <span>제품 사진도 같은 번호로</span></a></div>
         <DesktopLeadForm />
-        <p className="ask-note">문의만으로 예약이 확정되지 않아요. 작업과 비용·일정을 상담한 뒤 결정하세요.</p>
       </section>
 
       <section className="service-stories" id="situations">
